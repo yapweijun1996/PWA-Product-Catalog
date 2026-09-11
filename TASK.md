@@ -26,7 +26,7 @@ Statuses: `Done`, `Implemented`, `In progress`, `Ready`, `Not started`, `Blocked
 | PWA-051 | Implement quote cart and persistence | Add/edit/remove/quote persistence code plus browser quote flow and IndexedDB tests. |
 | PWA-052 | Implement immutable quote-line snapshots | Snapshot persistence test proves later catalog price edits do not change the saved line price. |
 | PWA-060 | Implement company branding settings | Local settings form persists company, contact, currency, tax, language, and bounded logo data URL. |
-| PWA-061 | Implement client-side PDF generation | `src/pdf.tsx`, dynamic PDF chunk, bundled Noto Sans SC WOFF, valid-PDF browser test, multi-page test, and manual rendered CJK check. |
+| PWA-061 | Implement client-side PDF generation | `src/pdf.tsx`, dynamic PDF chunk, bundled Noto Sans SC WOFF, valid-PDF browser test, multi-page test, five-locale export-path test, and manual rendered CJK check; a deployed synthetic branded PDF was visually inspected for layout and totals. |
 | PWA-070 | Add manifest and reviewed icons | `public/favicon.svg` is the canonical icon; UI glyphs use inline SVG, manifest includes the SVG plus PNG compatibility sizes, and the install prompt was observed in Chromium. |
 | PWA-071 | Implement owned versioned Service Worker | `public/sw.js`, GET/same-origin contract test, cache cleanup, offline fallback, and warmed offline browser reload. |
 | PWA-072 | Implement waiting-worker Update Now/Later flow | Deployed browser verification loaded `0.1.0`, detected waiting version `0.1.1`, confirmed Later left the worker waiting, and confirmed Update Now activated the worker and reloaded without silently updating. |
@@ -60,7 +60,7 @@ Statuses: `Done`, `Implemented`, `In progress`, `Ready`, `Not started`, `Blocked
 
 - `npm run typecheck`: passed.
 - `npm test`: passed, **13 tests** across domain, importer, IndexedDB, and PWA contract suites.
-- `npm run test:e2e`: passed, **10 browser tests** covering installable shell, five-locale selection with English default, first run/search/quote, CSV import, warmed offline reload, valid PDF output, and multi-page PDF output.
+- `npm run test:e2e`: passed, **11 browser tests** covering installable shell, five-locale selection with English default, first run/search/quote, CSV import, warmed offline reload, valid PDF output, and multi-page PDF output.
 - `npm run build`: passed; the PDF renderer is code-split, with a remaining large deferred PDF chunk warning.
 - Local production preview: shell, manifest, `sw.js`, project subpath, CJK PDF rendering, and mobile interaction inspected.
 - Lighthouse mobile on local preview: Accessibility **100**, Best Practices **100**, SEO **100**; no failing audits.

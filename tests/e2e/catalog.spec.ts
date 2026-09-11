@@ -128,6 +128,34 @@ test('preserves a draft when Web Share is cancelled', async ({ page }) => {
   await expect(page.getByRole('status')).not.toBeVisible();
 });
 
+test('exports quote PDFs through all supported locale paths', async ({ page }) => {
+  test.setTimeout(120000);
+  await createDemoQuote(page);
+  await expect(page.getByRole('status')).toBeHidden({ timeout: 6000 });
+  const locales = [
+    ['en', 'Save settings', 'Export PDF'],
+    ['zh-Hans', '保存设置', '导出 PDF'],
+    ['ms', 'Simpan tetapan', 'Eksport PDF'],
+    ['vi', 'Lưu cài đặt', 'Xuất PDF'],
+    ['ja', '設定を保存', 'PDF を出力'],
+  ] as const;
+  const navigation = page.locator('nav[aria-label="Primary navigation"] button');
+  let renderedSaveLabel = 'Save settings';
+  for (const [locale, saveLabel, exportLabel] of locales) {
+    await navigation.nth(2).click();
+    await page.locator('select[name="language"]').selectOption(locale);
+    await page.getByRole('button', { name: renderedSaveLabel }).click();
+    renderedSaveLabel = saveLabel;
+    await navigation.nth(1).click();
+    const downloadPromise = page.waitForEvent('download');
+    await page.getByRole('button', { name: exportLabel }).click();
+    const download = await downloadPromise;
+    const path = await download.path();
+    const pdfBytes = await readFile(path!);
+    expect(pdfBytes.subarray(0, 5).toString()).toBe('%PDF-');
+  }
+});
+
 test('places long quote line items across multiple PDF pages', async ({ page }) => {
   await page.goto('./#settings');
   const rows = Array.from({ length: 28 }, (_, index) => `LONG-${index + 1},Long industrial component ${index + 1} with a deliberately verbose description,${index + 10}.00,Long components,each,Extended specification text for page wrapping`);
