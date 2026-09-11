@@ -2,7 +2,7 @@
 
 **Status:** Technical MVP baseline implemented; release verification pending
 **Last verified:** 2026-09-11
-**Repository baseline:** Release implementation commit `2a7d766` is deployed through GitHub Pages; subsequent documentation-only commits remain synchronized with `origin/main`.
+**Repository baseline:** Release implementation commit `d5930eb` is deployed through GitHub Pages; subsequent documentation-only commits remain synchronized with `origin/main`.
 
 Statuses: `Done`, `Implemented`, `In progress`, `Ready`, `Not started`, `Blocked`, `Deferred`.
 `Done` means the stated evidence exists; it does not mean production release readiness.
@@ -32,8 +32,11 @@ Statuses: `Done`, `Implemented`, `In progress`, `Ready`, `Not started`, `Blocked
 | PWA-072 | Implement waiting-worker Update Now/Later flow | Deployed browser verification loaded `0.1.0`, detected waiting version `0.1.1`, confirmed Later left the worker waiting, and confirmed Update Now activated the worker and reloaded without silently updating. |
 | PWA-073 | Verify IndexedDB data survives SW updates | After the deployed update, browser IndexedDB read-back found 6 products, 1 catalog version, 1 quote, 1 quote line, 1 settings record, preserved company/customer values, and a stored logo; cache cleanup left only `pwa-product-catalog-shell-2a7d766`. |
 | PWA-062 | Implement share and fallback actions | `tests/e2e/catalog.spec.ts` covers supported Web Share, unsupported download fallback, and cancelled sharing; all three paths pass locally. |
-| PWA-080 | Add GitHub Actions Pages workflow | `.github/workflows/deploy-pages.yml` uses lockfile install, type/unit/browser/build gates, artifact upload, and Pages deployment; GitHub Actions run 7 (`34597073923`) passed. |
-| PWA-081 | Verify deployed Pages artifact | GitHub Actions run 7 (`34597073923`) passed and fresh-browser checks verified https://yapweijun1996.github.io/PWA-Product-Catalog/ over HTTPS, including shell, manifest, Service Worker, canonical SVG/PNG icons, hashed assets, scoped registration, deployed version `0.1.1`, and warmed offline reload. |
+| PWA-080 | Add GitHub Actions Pages workflow | `.github/workflows/deploy-pages.yml` uses lockfile install, type/unit/browser/build gates, artifact upload, and Pages deployment; GitHub Actions run 8 (`34600730823`) passed. |
+| PWA-081 | Verify deployed Pages artifact | GitHub Actions run 8 (`34600730823`) passed and fresh-browser checks verified https://yapweijun1996.github.io/PWA-Product-Catalog/ over HTTPS, including shell, manifest, Service Worker, canonical SVG/PNG icons, hashed assets, scoped registration, deployed version `0.1.1`, and warmed offline reload. |
+| PWA-041 | Modularize UI layout, persistent bottom quote bar, and mobile touch ergonomics | Component and i18n modularization (`src/features/*`, `src/components/*`, `src/i18n/*`); persistent bottom quote bar (`FloatingQuoteBar`), mobile bottom navigation dock, search clear action, category item counts, quantity steppers (`QuantityStepper` with 44px+ touch targets), and sample previews in import mapping. Verified by Vitest (16/16) and Playwright E2E (`interacts with search clear, persistent bottom quote bar, and quantity stepper`). |
+| PWA-042 | Product card visual avatars and customer autocomplete quick-pills | Deterministic category monogram avatars with industrial tint palettes on product cards and detail modal; customer name autocomplete (`<datalist>`) and recent customer quick-selection chips in quote editor. Verified by Vitest and Playwright E2E. |
+| PWA-012 | Add synthetic representative supplier-shaped fixtures | CSV and JSON fixtures (`tests/fixtures/realistic-supplier-catalog.csv`, `tests/fixtures/realistic-supplier-catalog.json`) exercise multi-attribute specifications (`Material Grade`, `Operating Rating`, `Certification`, `Lead Time`), tiered units, and formal commercial terms without claiming real supplier acceptance. Verified by `tests/supplier-integration.test.ts` and Playwright E2E. |
 
 ## In progress / partial proof
 
@@ -45,9 +48,9 @@ Statuses: `Done`, `Implemented`, `In progress`, `Ready`, `Not started`, `Blocked
 
 | ID | Task | Blocker / unblock action |
 |---|---|---|
-| PWA-010 | Obtain real supplier fixture and quote template | Provide a redacted representative CSV/JSON/XLSX, expected fields, a quote sample, and legal wording. |
-| PWA-011 | Confirm MVP product decisions | Confirm currency, tax, discount, quantity precision, image policy, language, terms, and XLSX priority. |
-| PWA-061B | Final PDF acceptance | Provide final branding assets, quote layout, legal terms, and a representative acceptance quote. |
+| PWA-010 | Obtain real supplier fixture and quote template | Provide a redacted representative CSV/JSON/XLSX, expected fields, a quote sample, and legal wording; current fixtures are synthetic only. |
+| PWA-011 | Confirm MVP product decisions | Confirm currency, tax, discount, quantity precision, image policy, language, terms, and XLSX priority; current USD/9% test values are synthetic assumptions. |
+| PWA-061B | Final PDF acceptance | Provide final production branding assets, custom legal layout, and stakeholder acceptance sign-off. |
 
 ## Deferred
 
@@ -59,14 +62,15 @@ Statuses: `Done`, `Implemented`, `In progress`, `Ready`, `Not started`, `Blocked
 ## Verification record
 
 - `npm run typecheck`: passed.
-- `npm test`: passed, **13 tests** across domain, importer, IndexedDB, and PWA contract suites.
-- `npm run test:e2e`: passed, **11 browser tests** covering installable shell, five-locale selection with English default, first run/search/quote, CSV import, warmed offline reload, valid PDF output, and multi-page PDF output.
+- `npm test`: passed, **16 tests** across domain, importer, IndexedDB, PWA contract, and supplier-shaped integration suites.
+- `npm run test:e2e`: passed, **13 browser tests** covering installable shell, five-locale selection with English default, first run/search/quote, CSV import, warmed offline reload, valid PDF output, multi-page PDF output, persistent floating quote bar/search clear/stepper interactions, and product avatars/customer pills/representative supplier-shaped catalog import.
 - `npm run build`: passed; the PDF renderer is code-split, with a remaining large deferred PDF chunk warning.
 - Local production preview: shell, manifest, `sw.js`, project subpath, CJK PDF rendering, and mobile interaction inspected.
 - Lighthouse mobile on local preview: Accessibility **100**, Best Practices **100**, SEO **100**; no failing audits.
 - `npm audit --omit=dev`: **0 vulnerabilities**. Full audit reports two moderate dev-only Vitest-chain advisories; upgrading requires a breaking Vitest major and was not applied.
-- GitHub Actions run 7 (`34597073923`): **passed** — verify and deploy jobs succeeded for commit `c3418d2`.
+- GitHub Actions run 8 (`34600730823`): **passed** — verify and deploy jobs succeeded for commit `d5930eb`.
 - Deployed HTTPS verification: **passed** — shell, manifest, Service Worker, icons, hashed assets, scoped registration, version `0.1.1`, and warmed offline reload were verified at https://yapweijun1996.github.io/PWA-Product-Catalog/; deployed Lighthouse mobile scores were Accessibility **100**, Best Practices **100**, SEO **100**, Agentic Browsing **100**.
+- Deployed current `d5930eb` browser verification: **passed** — the page loaded `index-D3bksFho.js`, `sw.js` reported `d5930eb`, the app exposed 6 product avatars and the floating quote dock, explicit Update Now activated the waiting `v0.1.1` worker, cache cleanup left only `pwa-product-catalog-shell-d5930eb`, and offline reload retained 6 products plus the quote and line.
 - Deployed update/data-survival verification: **passed** — a `0.1.0` client showed waiting `0.1.1`, Later preserved the prompt state, Update Now activated the new worker, and IndexedDB/catalog/quote/settings/logo data remained present after reload.
 
 ## Current next action

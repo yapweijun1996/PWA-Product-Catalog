@@ -2,7 +2,7 @@
 
 **Status:** Technical MVP baseline implemented; release verification pending
 **Last verified:** 2026-09-11
-**Implementation commit:** `2a7d766` (`chore: bump application version to 0.1.1`), deployed through GitHub Actions run 7; subsequent documentation-only commits keep the same release state synchronized with `origin/main`.
+**Implementation commit:** `d5930eb` (`feat: validate supplier-shaped catalog workflow`), deployed through GitHub Actions run 8 (`34600730823`); release validation remains incomplete and the repository is synchronized with `origin/main`.
 
 ## Verified state
 
@@ -24,22 +24,20 @@ The core local workflow is implemented and tested with synthetic fixtures. Relea
 
 | Workstream | Status | Evidence or next proof |
 |---|---|---|
-| Product scope and UX | Proposed / technical slice implemented | Validate labels, fields, pricing, legal terms, and workflow with a real supplier. |
+| Product scope and UX | Proposed / technical slice implemented | A synthetic 15-item multi-category supplier-shaped fixture exercises deterministic money/tax/discount calculations, commercial terms, and mobile ergonomics; real supplier validation remains open. |
 | Repository foundation | Implemented | `package.json`, lockfile, Vite, TypeScript, Vitest, Playwright, and Pages workflow exist; local gates pass. English is default with Mandarin, Malay, Vietnamese, and Japanese locale coverage. |
 | Catalog import and IndexedDB | Implemented; locally verified | CSV/JSON mapping, row errors, duplicate rejection, atomic replacement, backup/restore, and snapshot tests pass. |
-| Catalog browsing | Implemented; locally verified | Search, category chips, provenance, product detail dialog, empty state, mobile screenshot, and Lighthouse accessibility pass. |
-| Quote builder | Implemented; locally verified | Deterministic money rules, quantity/discount validation, history, snapshots, duplicate/delete, and quote browser flow pass. |
+| Catalog browsing | Implemented; locally verified | Search, instant search clear, category chips with item counts, provenance, product detail dialog, empty state, persistent floating quote dock, and Lighthouse accessibility pass. |
+| Quote builder | Implemented; locally verified | Deterministic money rules, quantity steppers (44px+ touch targets), quantity/discount validation, history, snapshots, duplicate/delete, and quote browser flow pass. |
 | PDF and sharing | Implemented; partially verified | Local PDF, CJK rendering, validity/tax/totals, supported Web Share, unsupported download fallback, cancellation handling, five-locale export paths, and multi-page browser checks exist; a deployed synthetic branded PDF was visually inspected; final acceptance sample and failure injection remain. |
 | PWA runtime | Implemented; deployed and partially verified | Manifest/icons, install prompt, versioned GET-only SW, deployed `0.1.0` → `0.1.1` waiting-version Later/Update Now flow, cache cleanup, IndexedDB read-back, and warmed offline reload pass; migration-specific and unsupported-device checks remain. |
-| GitHub Pages delivery | Deployed; locally and remotely verified | GitHub Actions run 7 (`34597073923`) passed; https://yapweijun1996.github.io/PWA-Product-Catalog/ returned the shell, manifest, Service Worker, hashed assets, and scoped HTTPS runtime. Fresh-browser offline reload, deployed version `0.1.1`, mobile Lighthouse checks, and share fallback paths pass. |
+| GitHub Pages delivery | Deployed; locally and remotely verified | GitHub Actions run 8 (`34600730823`) passed for `d5930eb`; https://yapweijun1996.github.io/PWA-Product-Catalog/ returned the current hashed shell (`index-D3bksFho.js`), manifest, Service Worker version `d5930eb`, scoped HTTPS runtime, and cache `pwa-product-catalog-shell-d5930eb`. Fresh-browser mobile checks, offline reload, and the explicit `v0.1.1` update flow pass. |
 
 ## Blockers
 
-1. Missing real supplier data and acceptance quote.
-2. Unconfirmed pricing, tax, currency, quantity, branding, and legal rules.
-3. Representative final PDF inspection remains incomplete.
-4. Real supplier data, pricing rules, branding, and legal wording remain unavailable.
+1. Real supplier catalog, pricing/tax/currency/discount rules, and quotation template are still unavailable.
+2. Final stakeholder production PDF branding asset sign-off (PWA-061B).
 
 ## Next action
 
-Obtain the redacted supplier fixture and representative quote template; then complete final PDF acceptance. Update this file and `TASK.md` after each verified change.
+Obtain the real supplier fixture and quotation acceptance sample, then complete final stakeholder branding sign-off. Update this file and `TASK.md` after each verified change.

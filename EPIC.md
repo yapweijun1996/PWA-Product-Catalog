@@ -2,7 +2,7 @@
 
 **Status:** Implementation baseline exists; release verification pending
 **Last verified:** 2026-09-11
-**Current release:** No release. Commit `2a7d766` contains the implementation and is deployed at https://yapweijun1996.github.io/PWA-Product-Catalog/; business and remaining release proofs are still open.
+**Current release:** No release. Commit `d5930eb` contains the implementation and is deployed at https://yapweijun1996.github.io/PWA-Product-Catalog/; business and remaining release proofs are still open.
 
 Statuses use `Done`, `In progress`, `Ready`, `Not started`, and `Blocked`. `Done` means repository evidence exists, not that a requirement is merely described.
 
@@ -131,7 +131,7 @@ Deliverables:
 - Pages artifact upload/deploy;
 - deployed shell/manifest/worker/asset verification.
 
-Exit evidence: GitHub Actions run 7 (`34597073923`) passed, and fresh-browser HTTPS checks verified https://yapweijun1996.github.io/PWA-Product-Catalog/.
+Exit evidence: GitHub Actions run 8 (`34600730823`) passed, and fresh-browser HTTPS checks verified https://yapweijun1996.github.io/PWA-Product-Catalog/.
 
 ## Epic 8 — Release readiness
 

@@ -2,7 +2,7 @@
 
 **Status:** Technical foundation implemented; product validation pending
 **Last verified:** 2026-09-11
-**Codebase source of truth:** Commit `2a7d766` contains the Vite/React/TypeScript implementation and tests and is deployed at https://yapweijun1996.github.io/PWA-Product-Catalog/.
+**Codebase source of truth:** Commit `d5930eb` contains the Vite/React/TypeScript implementation, supplier-shaped fixture coverage, and tests and is deployed at https://yapweijun1996.github.io/PWA-Product-Catalog/.
 **Documentation control:** [GOAL.md](GOAL.md), [PROGRESS.md](PROGRESS.md), and [GOAL_PROMPT.md](GOAL_PROMPT.md).
 
 ## 1. Product intent
@@ -69,7 +69,7 @@ The first-run screen should send a user directly to import. A dashboard may prov
 - Data backup, restore, and destructive clear-data flow.
 - Offline and application-update status.
 
-The current implementation uses hash navigation, a quote line-count badge, inline category chips, and a product-detail dialog rather than a separate dashboard, filter sheet, or persistent bottom quote bar. These are deliberate MVP simplifications to validate the core local workflow before real supplier feedback.
+The current implementation uses hash navigation with responsive mobile bottom navigation, category chips with item counts, an instant search clear action, a persistent bottom quote bar (Floating Quote Dock) showing line count and total, quantity steppers with 44px+ touch targets in the quote editor, and row sample previews during CSV/JSON import mapping. A separate filter bottom sheet and server sync remain future enhancements.
 
 ## 5. Interaction states that must be designed
 
@@ -154,7 +154,7 @@ UI code must not contain pricing formulas or database queries. `src/domain.ts` o
 
 ## 10. Current truth boundary
 
-Commit `2a7d766` contains the technical implementation, and the deployed shell and update path are verified at https://yapweijun1996.github.io/PWA-Product-Catalog/. It is not a release: real supplier inputs, final legal/branding decisions, and final representative PDF/CJK acceptance remain open. `SPEC.md`, `EPIC.md`, `ROADMAP.md`, `TASK.md`, `GOAL.md`, and `PROGRESS.md` must keep that distinction explicit.
+Commit `d5930eb` contains the technical implementation, supplier-shaped fixture coverage, and current mobile UX slice; the deployed shell and update path are verified at https://yapweijun1996.github.io/PWA-Product-Catalog/. It is not a release: real supplier inputs, final legal/branding decisions, and final representative PDF/CJK acceptance remain open. `SPEC.md`, `EPIC.md`, `ROADMAP.md`, `TASK.md`, `GOAL.md`, and `PROGRESS.md` must keep that distinction explicit.
 
 ## 11. Documentation and evidence contract
 
