@@ -37,7 +37,7 @@ test('supports the five locale settings with English as the default', async ({ p
   for (const [locale, saveLabel, catalogLabel] of locales) {
     await language.selectOption(locale);
     await page.getByRole('button', { name: renderedSaveLabel }).click();
-    await expect(page.locator('nav[aria-label="Primary navigation"]').getByRole('button').first()).toContainText(catalogLabel);
+    await expect(page.getByRole('navigation').getByRole('button').first()).toContainText(catalogLabel);
     renderedSaveLabel = saveLabel;
   }
 });
@@ -59,7 +59,7 @@ test('imports a CSV through the mapping and validation flow', async ({ page }) =
   await page.locator('input[name="catalog-file"]').setInputFiles('tests/fixtures/catalog.csv');
   await expect(page.getByText('2 valid products')).toBeVisible();
   await page.getByRole('button', { name: 'Commit catalog' }).click();
-  await page.locator('nav[aria-label="Primary navigation"]').getByRole('button', { name: /Catalog/ }).click();
+  await page.getByRole('navigation').getByRole('button', { name: /Catalog/ }).click();
   await expect(page.locator('.screen-heading').getByText(/2 products/)).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Test Brass Coupling' })).toBeVisible();
 });
@@ -139,7 +139,7 @@ test('exports quote PDFs through all supported locale paths', async ({ page }) =
     ['vi', 'Lưu cài đặt', 'Xuất PDF'],
     ['ja', '設定を保存', 'PDF を出力'],
   ] as const;
-  const navigation = page.locator('nav[aria-label="Primary navigation"] button');
+  const navigation = page.getByRole('navigation').getByRole('button');
   let renderedSaveLabel = 'Save settings';
   for (const [locale, saveLabel, exportLabel] of locales) {
     await navigation.nth(2).click();
@@ -163,7 +163,7 @@ test('places long quote line items across multiple PDF pages', async ({ page }) 
   await page.locator('input[name="catalog-file"]').setInputFiles({ name: 'long-catalog.csv', mimeType: 'text/csv', buffer: Buffer.from(csv) });
   await expect(page.getByText('28 valid products')).toBeVisible();
   await page.getByRole('button', { name: 'Commit catalog' }).click();
-  await page.locator('nav[aria-label="Primary navigation"]').getByRole('button', { name: /Catalog/ }).click();
+  await page.getByRole('navigation').getByRole('button', { name: /Catalog/ }).click();
   const addButtons = page.getByRole('button', { name: 'Add to quote' });
   for (let index = 0; index < 28; index += 1) await addButtons.nth(index).click();
   await page.getByRole('button', { name: /Quotes/ }).click();
@@ -174,4 +174,27 @@ test('places long quote line items across multiple PDF pages', async ({ page }) 
   const pdfBytes = await readFile(path!);
   const pageCount = (pdfBytes.toString('latin1').match(/\/Type\s*\/Page\b/g) ?? []).length;
   expect(pageCount).toBeGreaterThan(1);
+});
+
+test('interacts with search clear, persistent bottom quote bar, and quantity stepper', async ({ page }) => {
+  await page.getByRole('button', { name: 'Load demo catalog' }).click();
+  const searchInput = page.getByRole('textbox', { name: 'Search by product name or SKU' });
+  await searchInput.fill('PUMP');
+  await expect(page.getByRole('heading', { name: 'Stainless Steel Transfer Pump' })).toBeVisible();
+  await page.getByRole('button', { name: 'Clear search' }).click();
+  await expect(searchInput).toHaveValue('');
+
+  await page.getByRole('button', { name: 'Add to quote' }).first().click();
+  const floatingBar = page.locator('.floating-quote-bar');
+  await expect(floatingBar).toBeVisible();
+  await expect(floatingBar).toContainText('1');
+  await page.getByRole('button', { name: 'View quote' }).click();
+  await expect(page).toHaveURL(/#quotes/);
+
+  const increaseBtn = page.getByRole('button', { name: 'Increase quantity' });
+  await increaseBtn.click();
+  await expect(page.locator('input[name^="quantity-"]')).toHaveValue('2');
+  const decreaseBtn = page.getByRole('button', { name: 'Decrease quantity' });
+  await decreaseBtn.click();
+  await expect(page.locator('input[name^="quantity-"]')).toHaveValue('1');
 });
