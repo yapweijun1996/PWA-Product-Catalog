@@ -75,6 +75,20 @@ test('reloads the warmed catalog offline', async ({ page, context }) => {
   await expect(page.getByText('6 products')).toBeVisible();
 });
 
+test('preserves a draft when PDF download setup fails', async ({ page }) => {
+  await page.evaluate(() => {
+    Object.defineProperty(URL, 'createObjectURL', {
+      configurable: true,
+      value: () => { throw new Error('Injected PDF setup failure'); },
+    });
+  });
+  await createDemoQuote(page);
+  await expect(page.getByRole('status')).toBeHidden({ timeout: 6000 });
+  await page.getByRole('button', { name: 'Export PDF' }).click();
+  await expect(page.getByRole('status')).toContainText('Injected PDF setup failure', { timeout: 20000 });
+  await expect(page.locator('.history-row').first()).toContainText('Draft');
+});
+
 test('exports a quote PDF and returns a valid PDF file', async ({ page }) => {
   await page.getByRole('button', { name: 'Load demo catalog' }).click();
   await page.getByRole('button', { name: 'Add to quote' }).first().click();

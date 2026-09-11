@@ -120,7 +120,7 @@ These require a backend, authentication, data ownership, conflict resolution, an
 
 1. No real supplier data or quote template is available.
 2. Pricing, tax, currency, and legal requirements are not confirmed.
-3. Final PDF acceptance evidence, failure-injection, migration-specific, and unsupported-device checks are not yet complete.
+3. Final PDF acceptance evidence, exact renderer-failure, migration-specific, and unsupported-device checks are not yet complete.
 4. Real supplier inputs, final pricing/legal rules, and quotation acceptance remain unavailable.
 5. Client-side PDF font size and large catalog/image performance need real fixtures.
 6. Offline is local device scope, not shared-team synchronization.
