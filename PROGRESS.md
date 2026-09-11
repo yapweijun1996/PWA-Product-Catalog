@@ -2,7 +2,7 @@
 
 **Status:** Technical MVP baseline implemented; release verification pending
 **Last verified:** 2026-09-11
-**Implementation commit:** `2a7d766` (`chore: bump application version to 0.1.1`), deployed through GitHub Actions run 3; subsequent documentation-only commits keep the same release state synchronized with `origin/main`.
+**Implementation commit:** `2a7d766` (`chore: bump application version to 0.1.1`), deployed through GitHub Actions run 5; subsequent documentation-only commits keep the same release state synchronized with `origin/main`.
 
 ## Verified state
 
@@ -31,7 +31,7 @@ The core local workflow is implemented and tested with synthetic fixtures. Relea
 | Quote builder | Implemented; locally verified | Deterministic money rules, quantity/discount validation, history, snapshots, duplicate/delete, and quote browser flow pass. |
 | PDF and sharing | Implemented; partially verified | Local PDF, CJK rendering, validity/tax/totals, supported Web Share, unsupported download fallback, cancellation handling, and multi-page browser checks exist; final branded acceptance sample and failure injection remain. |
 | PWA runtime | Implemented; deployed and partially verified | Manifest/icons, install prompt, versioned GET-only SW, deployed `0.1.0` → `0.1.1` waiting-version Later/Update Now flow, cache cleanup, IndexedDB read-back, and warmed offline reload pass; migration-specific and unsupported-device checks remain. |
-| GitHub Pages delivery | Deployed; locally and remotely verified | GitHub Actions run 3 (`34594397124`) passed; https://yapweijun1996.github.io/PWA-Product-Catalog/ returned the shell, manifest, Service Worker, hashed assets, and scoped HTTPS runtime. Fresh-browser offline reload, deployed version `0.1.1`, and mobile Lighthouse checks pass. |
+| GitHub Pages delivery | Deployed; locally and remotely verified | GitHub Actions run 5 (`34595922906`) passed; https://yapweijun1996.github.io/PWA-Product-Catalog/ returned the shell, manifest, Service Worker, hashed assets, and scoped HTTPS runtime. Fresh-browser offline reload, deployed version `0.1.1`, mobile Lighthouse checks, and share fallback paths pass. |
 
 ## Blockers
 

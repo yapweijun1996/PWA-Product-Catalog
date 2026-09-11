@@ -17,7 +17,7 @@ npm run build
 npm run preview
 ```
 
-The Vite base path is `/PWA-Product-Catalog/`. Durable catalog, quote, settings, and logo data stays in IndexedDB; the Service Worker only handles same-origin `GET` requests. The PDF generator is loaded on demand to keep the initial mobile bundle smaller. The production deployment uses GitHub Actions run 3 (`34594397124`); the deployed update path was verified from version `0.1.0` to `0.1.1`.
+The Vite base path is `/PWA-Product-Catalog/`. Durable catalog, quote, settings, and logo data stays in IndexedDB; the Service Worker only handles same-origin `GET` requests. The PDF generator is loaded on demand to keep the initial mobile bundle smaller. The production deployment uses GitHub Actions run 5 (`34595922906`); the deployed update path was verified from version `0.1.0` to `0.1.1`, including Web Share fallback coverage.
 
 ## Documentation
 
