@@ -4,7 +4,7 @@ A mobile-first, offline-first B2B product catalog and quotation PWA for supplier
 
 ## Current status
 
-**Technical MVP deployed; release verification pending.** The app provides local catalog import, IndexedDB persistence, quote snapshots, branded PDF generation, English/Mandarin/Malay/Vietnamese/Japanese UI, PWA runtime behavior, and Pages CI. Live URL: https://yapweijun1996.github.io/PWA-Product-Catalog/. It is not release-ready until real supplier/business inputs, final PDF acceptance, and remaining coverage checks are complete.
+**Technical MVP deployed; release verification pending.** The app provides local catalog import, IndexedDB persistence, quote snapshots, branded PDF generation, English/Mandarin/Malay/Vietnamese/Japanese UI, PWA runtime behavior, and Pages CI. Live URL: https://yapweijun1996.github.io/PWA-Product-Catalog/. It is not release-ready until real supplier/business inputs and final PDF acceptance are complete.
 
 ## Development
 

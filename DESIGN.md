@@ -154,7 +154,7 @@ UI code must not contain pricing formulas or database queries. `src/domain.ts` o
 
 ## 10. Current truth boundary
 
-Commit `2a7d766` contains the technical implementation, and the deployed shell and update path are verified at https://yapweijun1996.github.io/PWA-Product-Catalog/. It is not a release: real supplier inputs, final legal/branding decisions, final representative PDF acceptance, and unsupported-share coverage remain open. `SPEC.md`, `EPIC.md`, `ROADMAP.md`, `TASK.md`, `GOAL.md`, and `PROGRESS.md` must keep that distinction explicit.
+Commit `2a7d766` contains the technical implementation, and the deployed shell and update path are verified at https://yapweijun1996.github.io/PWA-Product-Catalog/. It is not a release: real supplier inputs, final legal/branding decisions, and final representative PDF acceptance remain open. `SPEC.md`, `EPIC.md`, `ROADMAP.md`, `TASK.md`, `GOAL.md`, and `PROGRESS.md` must keep that distinction explicit.
 
 ## 11. Documentation and evidence contract
 

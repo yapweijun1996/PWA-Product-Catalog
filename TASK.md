@@ -2,7 +2,7 @@
 
 **Status:** Technical MVP baseline implemented; release verification pending
 **Last verified:** 2026-09-11
-**Repository baseline:** `2a7d766` contains the committed implementation, synchronized with `origin/main`, and deployed through GitHub Pages.
+**Repository baseline:** Release implementation commit `2a7d766` is deployed through GitHub Pages; subsequent documentation-only commits remain synchronized with `origin/main`.
 
 Statuses: `Done`, `Implemented`, `In progress`, `Ready`, `Not started`, `Blocked`, `Deferred`.
 `Done` means the stated evidence exists; it does not mean production release readiness.
@@ -11,7 +11,7 @@ Statuses: `Done`, `Implemented`, `In progress`, `Ready`, `Not started`, `Blocked
 
 | ID | Task | Evidence |
 |---|---|---|
-| PWA-000 | Initialize repository | `git status`, `git log`, and `git branch -vv` confirm `main` at `2a7d766`, synchronized with `origin/main`; the original `91b91c7` baseline was documentation-only. |
+| PWA-000 | Initialize repository | `git status`, `git log`, and `git branch -vv` recorded the original `91b91c7` documentation-only baseline and the subsequent release commits; the repository is synchronized with `origin/main`. |
 | PWA-001 | Record proposed product and UX direction | Project KB item `c8463d7b-582f-466d-abaa-416be7fe9700`, status `Proposed`. |
 | PWA-002 | Inspect repository source of truth before planning | Baseline contained only `.gitattributes`. |
 | PWA-003 | Create aligned documentation baseline | `DESIGN.md`, `SPEC.md`, `EPIC.md`, `ROADMAP.md`, and this ledger were aligned. |
@@ -31,6 +31,7 @@ Statuses: `Done`, `Implemented`, `In progress`, `Ready`, `Not started`, `Blocked
 | PWA-071 | Implement owned versioned Service Worker | `public/sw.js`, GET/same-origin contract test, cache cleanup, offline fallback, and warmed offline browser reload. |
 | PWA-072 | Implement waiting-worker Update Now/Later flow | Deployed browser verification loaded `0.1.0`, detected waiting version `0.1.1`, confirmed Later left the worker waiting, and confirmed Update Now activated the worker and reloaded without silently updating. |
 | PWA-073 | Verify IndexedDB data survives SW updates | After the deployed update, browser IndexedDB read-back found 6 products, 1 catalog version, 1 quote, 1 quote line, 1 settings record, preserved company/customer values, and a stored logo; cache cleanup left only `pwa-product-catalog-shell-2a7d766`. |
+| PWA-062 | Implement share and fallback actions | `tests/e2e/catalog.spec.ts` covers supported Web Share, unsupported download fallback, and cancelled sharing; all three paths pass locally. |
 | PWA-080 | Add GitHub Actions Pages workflow | `.github/workflows/deploy-pages.yml` uses lockfile install, type/unit/browser/build gates, artifact upload, and Pages deployment; GitHub Actions run 3 (`34594397124`) passed. |
 | PWA-081 | Verify deployed Pages artifact | GitHub Actions run 3 (`34594397124`) passed and fresh-browser checks verified https://yapweijun1996.github.io/PWA-Product-Catalog/ over HTTPS, including shell, manifest, Service Worker, canonical SVG/PNG icons, hashed assets, scoped registration, deployed version `0.1.1`, and warmed offline reload. |
 
@@ -39,7 +40,6 @@ Statuses: `Done`, `Implemented`, `In progress`, `Ready`, `Not started`, `Blocked
 | ID | Task | Current evidence | Missing proof |
 |---|---|---|---|
 | PWA-030 | Implement versioned Dexie/IndexedDB schema | `src/db.ts` has schema version 1 and durable tables; persistence tests pass. | Future migration path and migration-specific tests. |
-| PWA-062 | Implement share and fallback actions | `shareQuotePdf()` uses Web Share when file sharing is supported and otherwise downloads; explicit UI actions exist. | Browser coverage for supported share, unsupported fallback, and cancellation. |
 
 ## Blocked by product or release inputs
 
@@ -60,7 +60,7 @@ Statuses: `Done`, `Implemented`, `In progress`, `Ready`, `Not started`, `Blocked
 
 - `npm run typecheck`: passed.
 - `npm test`: passed, **13 tests** across domain, importer, IndexedDB, and PWA contract suites.
-- `npm run test:e2e`: passed, **7 browser tests** covering installable shell, five-locale selection with English default, first run/search/quote, CSV import, warmed offline reload, valid PDF output, and multi-page PDF output.
+- `npm run test:e2e`: passed, **10 browser tests** covering installable shell, five-locale selection with English default, first run/search/quote, CSV import, warmed offline reload, valid PDF output, and multi-page PDF output.
 - `npm run build`: passed; the PDF renderer is code-split, with a remaining large deferred PDF chunk warning.
 - Local production preview: shell, manifest, `sw.js`, project subpath, CJK PDF rendering, and mobile interaction inspected.
 - Lighthouse mobile on local preview: Accessibility **100**, Best Practices **100**, SEO **100**; no failing audits.

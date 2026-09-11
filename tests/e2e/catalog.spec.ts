@@ -1,9 +1,15 @@
 import { readFile } from 'node:fs/promises';
-import { expect, test } from '@playwright/test';
+import { expect, test, type Page } from '@playwright/test';
 
 test.beforeEach(async ({ page }) => {
   await page.goto('./#catalog');
 });
+
+async function createDemoQuote(page: Page) {
+  await page.getByRole('button', { name: 'Load demo catalog' }).click();
+  await page.getByRole('button', { name: 'Add to quote' }).first().click();
+  await page.getByRole('button', { name: /Quotes/ }).click();
+}
 
 test('registers the installable app shell', async ({ page }) => {
   await expect(page.locator('link[rel="manifest"]')).toHaveAttribute('href', /manifest\.webmanifest/);
@@ -81,6 +87,45 @@ test('exports a quote PDF and returns a valid PDF file', async ({ page }) => {
   expect(path).toBeTruthy();
   const pdfBytes = await readFile(path!);
   expect(pdfBytes.subarray(0, 5).toString()).toBe('%PDF-');
+});
+
+test('downloads a PDF when Web Share is unavailable', async ({ page }) => {
+  await page.evaluate(() => {
+    Object.defineProperty(navigator, 'share', { configurable: true, value: undefined });
+    Object.defineProperty(navigator, 'canShare', { configurable: true, value: undefined });
+  });
+  await createDemoQuote(page);
+  const downloadPromise = page.waitForEvent('download');
+  await page.getByRole('button', { name: 'Share PDF' }).click();
+  const download = await downloadPromise;
+  expect(download.suggestedFilename()).toMatch(/^Q-.*\.pdf$/);
+  await expect(page.getByRole('status')).toContainText('Sharing is unavailable; the PDF was downloaded.');
+});
+
+test('uses Web Share when file sharing is supported', async ({ page }) => {
+  await page.evaluate(() => {
+    const testWindow = window as Window & { shareInvocations: number };
+    testWindow.shareInvocations = 0;
+    Object.defineProperty(navigator, 'canShare', { configurable: true, value: () => true });
+    Object.defineProperty(navigator, 'share', { configurable: true, value: async () => { testWindow.shareInvocations += 1; } });
+  });
+  await createDemoQuote(page);
+  await expect(page.getByRole('status')).toBeHidden({ timeout: 6000 });
+  await page.getByRole('button', { name: 'Share PDF' }).click();
+  await expect.poll(() => page.evaluate(() => (window as Window & { shareInvocations: number }).shareInvocations), { timeout: 20000 }).toBe(1);
+  await expect(page.getByRole('status')).toContainText('Share PDF');
+});
+
+test('preserves a draft when Web Share is cancelled', async ({ page }) => {
+  await page.evaluate(() => {
+    Object.defineProperty(navigator, 'canShare', { configurable: true, value: () => true });
+    Object.defineProperty(navigator, 'share', { configurable: true, value: async () => { throw new DOMException('Cancelled', 'AbortError'); } });
+  });
+  await createDemoQuote(page);
+  await expect(page.getByRole('status')).toBeHidden({ timeout: 6000 });
+  await page.getByRole('button', { name: 'Share PDF' }).click();
+  await expect(page.locator('.history-row').first()).toContainText('Draft');
+  await expect(page.getByRole('status')).not.toBeVisible();
 });
 
 test('places long quote line items across multiple PDF pages', async ({ page }) => {
