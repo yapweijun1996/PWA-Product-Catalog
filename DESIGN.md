@@ -2,7 +2,7 @@
 
 **Status:** Technical foundation implemented; product validation pending
 **Last verified:** 2026-09-11
-**Codebase source of truth:** Commit `42c1a76` contains the Vite/React/TypeScript implementation and tests. It is committed locally but has not yet been pushed or deployed.
+**Codebase source of truth:** Commit `2a7d766` contains the Vite/React/TypeScript implementation and tests and is deployed at https://yapweijun1996.github.io/PWA-Product-Catalog/.
 **Documentation control:** [GOAL.md](GOAL.md), [PROGRESS.md](PROGRESS.md), and [GOAL_PROMPT.md](GOAL_PROMPT.md).
 
 ## 1. Product intent
@@ -110,7 +110,7 @@ Design tokens must be defined once in CSS variables or the selected design-token
 
 ### Application shell
 
-The planned implementation uses a Vite PWA build with an owned Service Worker (`injectManifest` or an equivalent custom worker) so update behavior remains explicit and testable.
+The implementation uses a Vite PWA build with an owned Service Worker so update behavior remains explicit and testable.
 
 - Cache same-origin `GET` resources only.
 - Use versioned cache names and delete obsolete caches after activation.
@@ -149,12 +149,12 @@ UI code must not contain pricing formulas or database queries. `src/domain.ts` o
 | CSV/JSON required; XLSX adapter planned | Implemented locally | CSV/JSON path is shipped in the technical slice; XLSX remains deferred pending supplier input. |
 | `@react-pdf/renderer` with bundled fonts | Implemented locally | Client-side PDF and bundled Noto Sans SC WOFF are present; final multi-locale acceptance PDF remains pending. |
 | Hash-based routing for Pages | Implemented locally | Avoids refresh/route fallback assumptions on a static GitHub Pages host. |
-| Network-first shell and prompt-controlled updates | Implemented locally; update simulation pending | `public/sw.js` reports its version to `src/pwa.ts`; the prompt shows that version with Update Now/Later; waiting-worker browser proof remains open. |
+| Network-first shell and prompt-controlled updates | Implemented; deployed update verified | `public/sw.js` reports its version to `src/pwa.ts`; the deployed `0.1.0` client showed waiting version `0.1.1`, Later left the worker waiting, and Update Now activated it without losing IndexedDB data. |
 | No backend in MVP | Confirmed scope | GitHub Pages supports private local catalogs and quotes; shared data needs a later authorized backend. |
 
 ## 10. Current truth boundary
 
-The working tree contains a technical implementation, but it is not a release. Local source and verification evidence support the implemented claims above; real supplier inputs, final legal/branding decisions, waiting-worker simulation, and GitHub Pages deployment remain open. `SPEC.md`, `EPIC.md`, `ROADMAP.md`, `TASK.md`, `GOAL.md`, and `PROGRESS.md` must keep that distinction explicit.
+Commit `2a7d766` contains the technical implementation, and the deployed shell and update path are verified at https://yapweijun1996.github.io/PWA-Product-Catalog/. It is not a release: real supplier inputs, final legal/branding decisions, final representative PDF acceptance, and unsupported-share coverage remain open. `SPEC.md`, `EPIC.md`, `ROADMAP.md`, `TASK.md`, `GOAL.md`, and `PROGRESS.md` must keep that distinction explicit.
 
 ## 11. Documentation and evidence contract
 

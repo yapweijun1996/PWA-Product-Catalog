@@ -2,7 +2,7 @@
 
 **Status:** Implementation baseline exists; release verification pending
 **Last verified:** 2026-09-11
-**Current release:** No release. Commit `42c1a76` contains the implementation locally; it has not yet been pushed or deployed.
+**Current release:** No release. Commit `2a7d766` contains the implementation and is deployed at https://yapweijun1996.github.io/PWA-Product-Catalog/; business and remaining release proofs are still open.
 
 Statuses use `Done`, `In progress`, `Ready`, `Not started`, and `Blocked`. `Done` means repository evidence exists, not that a requirement is merely described.
 
@@ -102,7 +102,7 @@ Exit evidence: generated PDFs are inspected for totals, wrapping, CJK, page brea
 
 ## Epic 6 — PWA runtime
 
-**Status:** Implemented; local runtime verification partial.
+**Status:** Implemented; deployed runtime verification partial.
 
 Goal: make the app installable and truthful offline.
 
@@ -115,11 +115,11 @@ Deliverables:
 - waiting-worker update banner with explicit activation;
 - IndexedDB migration/update compatibility.
 
-Exit evidence: browser verification passes first load, offline reload, persistence, waiting update, Update Now/Later, cache cleanup, and no data loss.
+Exit evidence: deployed browser verification passes first load, offline reload, persistence, waiting update, Update Now/Later, cache cleanup, and no data loss; migration-specific and unsupported-device checks remain open.
 
 ## Epic 7 — GitHub Pages delivery
 
-**Status:** Workflow implemented; deployment not verified.
+**Status:** Deployed; release verification pending.
 
 Goal: deploy only a verified artifact to the repository Pages site.
 
@@ -131,11 +131,11 @@ Deliverables:
 - Pages artifact upload/deploy;
 - deployed shell/manifest/worker/asset verification.
 
-Exit evidence: a successful Actions run and clean-browser HTTPS checks against the real project-scoped URL.
+Exit evidence: GitHub Actions run 3 (`34594397124`) passed, and fresh-browser HTTPS checks verified https://yapweijun1996.github.io/PWA-Product-Catalog/.
 
 ## Epic 8 — Release readiness
 
-**Status:** Blocked until real-input, production deployment, update-flow, and final PDF evidence are complete.
+**Status:** Blocked until real-input and final PDF acceptance evidence are complete.
 
 Goal: release a validated local-first MVP.
 

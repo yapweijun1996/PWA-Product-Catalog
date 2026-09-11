@@ -4,7 +4,7 @@ A mobile-first, offline-first B2B product catalog and quotation PWA for supplier
 
 ## Current status
 
-**Technical MVP foundation implemented; release verification pending.** The app now provides local catalog import, IndexedDB persistence, quote snapshots, branded PDF generation, English/Mandarin/Malay/Vietnamese/Japanese UI, PWA runtime behavior, and Pages CI configuration. It is not release-ready until real supplier/business inputs, PDF inspection, and an actual GitHub Pages deployment are verified.
+**Technical MVP deployed; release verification pending.** The app provides local catalog import, IndexedDB persistence, quote snapshots, branded PDF generation, English/Mandarin/Malay/Vietnamese/Japanese UI, PWA runtime behavior, and Pages CI. Live URL: https://yapweijun1996.github.io/PWA-Product-Catalog/. It is not release-ready until real supplier/business inputs, final PDF acceptance, and remaining coverage checks are complete.
 
 ## Development
 
@@ -17,7 +17,7 @@ npm run build
 npm run preview
 ```
 
-The Vite base path is `/PWA-Product-Catalog/`. Durable catalog, quote, settings, and logo data stays in IndexedDB; the Service Worker only handles same-origin `GET` requests. The PDF generator is loaded on demand to keep the initial mobile bundle smaller.
+The Vite base path is `/PWA-Product-Catalog/`. Durable catalog, quote, settings, and logo data stays in IndexedDB; the Service Worker only handles same-origin `GET` requests. The PDF generator is loaded on demand to keep the initial mobile bundle smaller. The production deployment uses GitHub Actions run 3 (`34594397124`); the deployed update path was verified from version `0.1.0` to `0.1.1`.
 
 ## Documentation
 

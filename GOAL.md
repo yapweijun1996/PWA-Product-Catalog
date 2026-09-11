@@ -3,11 +3,11 @@
 **Status:** Active implementation; release verification blocked
 **Last verified:** 2026-09-11
 **Owner:** Project maintainer
-**Source of truth:** The repository implementation and its verification evidence. Commit `42c1a76` contains the technical MVP baseline and its tests; it is committed locally but not yet deployed.
+**Source of truth:** The repository implementation and its verification evidence. Commit `2a7d766` contains the technical MVP baseline and its tests, and is deployed at https://yapweijun1996.github.io/PWA-Product-Catalog/; release validation remains incomplete.
 
 ## Current evidence
 
-The local technical slice is implemented. `npm run typecheck`, `npm test` (13 tests), `npm run test:e2e` (7 tests), and `npm run build` pass. Local production preview checks include the project subpath, manifest, Service Worker, warmed offline reload, mobile layout, Lighthouse accessibility 100, and a rendered English/Mandarin PDF. The UI supports English (default), Mandarin Simplified Chinese, Malay, Vietnamese, and Japanese; UI glyphs use SVG and the canonical favicon SVG supplies the app icon. This evidence does not replace real-input or deployed HTTPS verification.
+The technical slice is implemented. Local and GitHub Actions run 3 (`34594397124`) pass install, typecheck, `npm test` (13 tests), `npm run test:e2e` (7 tests), and build. The deployed production URL is https://yapweijun1996.github.io/PWA-Product-Catalog/; fresh-browser checks verified HTTPS, the project subpath, manifest, Service Worker, hashed assets, version `0.1.1`, warmed offline reload, and a real `0.1.0` → `0.1.1` Later/Update Now flow with IndexedDB catalog, quote, settings, and logo read-back. Local Lighthouse mobile scores are Accessibility 100, Best Practices 100, SEO 100, and Agentic Browsing 100. The UI supports English (default), Mandarin Simplified Chinese, Malay, Vietnamese, and Japanese; UI glyphs use SVG and the canonical favicon SVG supplies the app icon. This evidence does not replace real-input or final PDF acceptance.
 
 ## Outcome
 
