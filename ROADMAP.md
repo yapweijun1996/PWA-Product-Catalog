@@ -3,7 +3,7 @@
 **Status:** Technical baseline implemented; release roadmap active
 **Last verified:** 2026-09-11
 **Current phase:** Phase 0 business validation; technical foundation through Phase 4 locally implemented
-**Implementation status:** The current technical baseline is committed in `d5930eb` and deployed at https://yapweijun1996.github.io/PWA-Product-Catalog/. Local and GitHub Actions run 10 (`34600730823`) typecheck, unit/browser checks, build, manifest/SW checks, Lighthouse mobile checks, deployed update/data-survival checks, and share fallback checks pass; run 11 (`34601321451`) redeployed synchronized documentation; real-input and final PDF validation remain open.
+**Implementation status:** The current technical baseline is committed in `d5930eb` and deployed at https://yapweijun1996.github.io/PWA-Product-Catalog/. Local and GitHub Actions run 10 (`34600730823`) typecheck, unit/browser checks, build, manifest/SW checks, Lighthouse mobile checks, deployed update/data-survival checks, and share fallback checks pass; runs 11 (`34601321451`) and 12 (`34602091645`) redeployed synchronized documentation; real-input and final PDF validation remain open.
 **Control documents:** `GOAL.md` (completion contract), `PROGRESS.md` (verified state), and `TASK.md` (executable ledger).
 
 This roadmap is an evidence-gated sequence, not a promise of dates. A phase advances only when its exit evidence exists in the repository or from an explicitly recorded browser/deployment verification.
