@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { Icon } from '../../icons';
 import { formatMoney, validatePercentage, validateQuantity } from '../../domain';
 import { QuantityStepper } from './QuantityStepper';
@@ -27,6 +28,15 @@ export function QuoteScreen({
   onDuplicate,
   onDelete,
 }: QuoteScreenProps) {
+  const customerSuggestions = useMemo(() => {
+    const set = new Set<string>();
+    for (const q of quotes) {
+      const trimmed = q.customer?.trim();
+      if (trimmed) set.add(trimmed);
+    }
+    return Array.from(set).slice(0, 8);
+  }, [quotes]);
+
   return (
     <section className="screen">
       <div className="screen-heading">
@@ -51,16 +61,45 @@ export function QuoteScreen({
         <div className="quote-layout">
           <div className="quote-editor card">
             <div className="form-grid">
-              <label>
-                <span>{labels.customer}</span>
-                <input
-                  name="customer"
-                  value={draft.customer}
-                  onChange={(event) =>
-                    void onChange((value) => ({ ...value, customer: event.target.value }))
-                  }
-                />
-              </label>
+              <div className="customer-field-wrapper">
+                <label>
+                  <span>{labels.customer}</span>
+                  <input
+                    name="customer"
+                    list="customer-suggestions"
+                    value={draft.customer}
+                    onChange={(event) =>
+                      void onChange((value) => ({ ...value, customer: event.target.value }))
+                    }
+                    autoComplete="off"
+                  />
+                  <datalist id="customer-suggestions">
+                    {customerSuggestions.map((candidate) => (
+                      <option key={candidate} value={candidate} />
+                    ))}
+                  </datalist>
+                </label>
+                {customerSuggestions.length > 0 && (
+                  <div className="customer-pills" aria-label={labels.recentCustomers}>
+                    <span className="customer-pills-label">{labels.recentCustomers}:</span>
+                    <div className="customer-pills-list">
+                      {customerSuggestions.slice(0, 4).map((name) => (
+                        <button
+                          key={name}
+                          type="button"
+                          className={`customer-pill ${draft.customer === name ? 'is-active' : ''}`}
+                          onClick={() =>
+                            void onChange((value) => ({ ...value, customer: name }))
+                          }
+                        >
+                          {name}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+
               <label>
                 <span>{labels.validUntil}</span>
                 <input
@@ -72,6 +111,7 @@ export function QuoteScreen({
                   }
                 />
               </label>
+
               <label>
                 <span>{labels.discount}</span>
                 <input

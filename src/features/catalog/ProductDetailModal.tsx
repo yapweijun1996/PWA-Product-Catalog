@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Icon } from '../../icons';
 import { formatMoney } from '../../domain';
+import { getCategoryMonogram, getCategoryTheme } from './ProductCard';
 import type { Product } from '../../types';
 import type { Labels } from '../../i18n/translations';
 
@@ -23,6 +24,9 @@ export function ProductDetailModal({ product, labels, onClose, onAdd }: ProductD
 
   if (!product) return null;
 
+  const theme = getCategoryTheme(product.category);
+  const monogram = getCategoryMonogram(product.category, product.name);
+
   return (
     <div
       className="detail-overlay"
@@ -35,8 +39,25 @@ export function ProductDetailModal({ product, labels, onClose, onAdd }: ProductD
         <button className="icon-button detail-close" onClick={onClose} aria-label={labels.close}>
           <Icon name="close" />
         </button>
-        <span className="product-category">{product.category}</span>
-        <h3 id="product-detail-title">{product.name}</h3>
+        <div className="detail-header">
+          <div
+            className="product-avatar product-avatar-large"
+            style={{
+              backgroundColor: theme.bg,
+              color: theme.color,
+              borderColor: theme.border,
+            }}
+            aria-hidden="true"
+          >
+            <span>{monogram}</span>
+          </div>
+          <div>
+            <span className="product-category" style={{ color: theme.color }}>
+              {product.category}
+            </span>
+            <h3 id="product-detail-title">{product.name}</h3>
+          </div>
+        </div>
         <p>{product.description}</p>
         <p className="detail-price-row">
           <b>{labels.sku}:</b> {product.sku} · <b>{labels.price}:</b>{' '}

@@ -10,7 +10,7 @@ const aliases: Record<ImportField, string[]> = {
   price: ['price', 'unitprice', 'sellingprice', 'amount', '售价', '价格', '单价'],
   category: ['category', 'group', 'type', '分类', '类别'],
   unit: ['unit', 'uom', '单位'],
-  description: ['details', 'longdescription', 'specification', '规格', '说明'],
+  description: ['description', 'desc', 'details', 'longdescription', 'specification', '规格', '说明', '描述'],
 };
 
 function normalizeHeader(value: string): string {

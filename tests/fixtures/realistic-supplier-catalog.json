@@ -1,0 +1,38 @@
+[
+  {
+    "sku": "PUMP-IND-200",
+    "name": "Heavy-Duty Centrifugal Slurry Pump 15kW",
+    "price": "1450.00",
+    "category": "Pumps & Fluid Handling",
+    "unit": "set",
+    "description": "High-volume industrial centrifugal pump with silicon carbide seals.",
+    "Material Grade": "316L Stainless",
+    "Operating Rating": "120 m3/h @ 8 bar",
+    "Certification": "ISO 9001 / CE",
+    "Lead Time": "3-5 business days"
+  },
+  {
+    "sku": "VALV-BAL-050",
+    "name": "Pneumatic Actuated Flanged Ball Valve DN50",
+    "price": "320.00",
+    "category": "Valves & Actuators",
+    "unit": "piece",
+    "description": "Automated 2-way flanged valve with double-acting pneumatic actuator.",
+    "Material Grade": "WCB Cast Steel",
+    "Operating Rating": "Class 150 (PN20)",
+    "Certification": "API 6D / SIL-2",
+    "Lead Time": "In stock"
+  },
+  {
+    "sku": "MOTR-IE3-400",
+    "name": "Premium Efficiency Cast Iron Induction Motor 4.0kW",
+    "price": "410.00",
+    "category": "Electrical & Motion",
+    "unit": "each",
+    "description": "3-phase 400V 50Hz asynchronous TEFC motor for harsh industrial duty.",
+    "Material Grade": "Cast Iron FC25",
+    "Operating Rating": "IP66 / Class H",
+    "Certification": "IE3 / CE / UL",
+    "Lead Time": "In stock"
+  }
+]

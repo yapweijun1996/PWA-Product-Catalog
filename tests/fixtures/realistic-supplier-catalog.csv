@@ -1,0 +1,16 @@
+SKU,Product Name,Price,Category,Unit,Description,Material Grade,Operating Rating,Certification,Lead Time
+PUMP-IND-200,Heavy-Duty Centrifugal Slurry Pump 15kW,1450.00,Pumps & Fluid Handling,set,High-volume industrial centrifugal pump with silicon carbide seals.,316L Stainless,120 m3/h @ 8 bar,ISO 9001 / CE,3-5 business days
+PUMP-DOS-010,Precision Chemical Diaphragm Dosing Pump,485.50,Pumps & Fluid Handling,each,Digital micro-metering pump for water treatment and acid dosing.,PTFE / PVDF,15 L/h @ 12 bar,CE / RoHS,In stock
+VALV-BAL-050,Pneumatic Actuated Flanged Ball Valve DN50,320.00,Valves & Actuators,piece,Automated 2-way flanged valve with double-acting pneumatic actuator.,WCB Cast Steel,Class 150 (PN20),API 6D / SIL-2,In stock
+VALV-BUT-100,Wafer Butterfly Valve EPDM Lined DN100,165.25,Valves & Actuators,piece,Resilient seated butterfly valve with lever operator for cooling loops.,Ductile Iron GGG40,16 bar,WRAS / CE,In stock
+VALV-CHK-040,Spring-Loaded Dual Plate Check Valve DN40,92.00,Valves & Actuators,piece,Non-slam dual plate wafer check valve for backflow prevention.,CF8M Stainless,PN25,API 594,In stock
+FILT-HOU-020,Multi-Cartridge Stainless Filter Housing 20-Inch,580.00,Filtration & Separation,unit,Sanitary multi-round cartridge vessel for beverage and pure water.,304 Stainless,10 bar @ 95°C,ASME Sec VIII,1-2 weeks
+FILT-MEM-001,High-Efficiency PP Pleated Filter Element 0.2um,28.50,Filtration & Separation,pack,Polypropylene depth membrane cartridge for sterile filtration.,100% Polypropylene,0.2 micron beta 5000,FDA 21 CFR,In stock
+MOTR-IE3-400,Premium Efficiency Cast Iron Induction Motor 4.0kW,410.00,Electrical & Motion,each,3-phase 400V 50Hz asynchronous TEFC motor for harsh industrial duty.,Cast Iron FC25,IP66 / Class H,IE3 / CE / UL,In stock
+VFD-IP66-550,Decentralized Variable Frequency Inverter 5.5kW,690.00,Electrical & Motion,unit,Sensorless vector AC drive with built-in EMC filter and Modbus RTU.,Die-cast Aluminum,3x380-480V,UL508C / CE,In stock
+HOSE-HYD-4SP,4-Wire Spiral Wire High-Pressure Hydraulic Hose 20m,145.00,Hoses & Fluid Transfer,roll,Abrasion resistant high-impulse hydraulic hose assembly.,Synthetic Rubber + Steel,420 bar burst 1680 bar,SAE 100R15 / ISO 3862,In stock
+HOSE-CAM-050,Stainless Steel Camlock Coupling Set 2-Inch,64.80,Hoses & Fluid Transfer,set,Type C & E quick disconnect fluid transfer coupling with Viton seals.,316 Stainless,16 bar,A-A-59326A,In stock
+SEAL-MEC-035,Cartridge Mechanical Seal for Hot Oil 35mm,215.00,Seals & Fasteners,set,Balanced stationary welded metal bellows seal for thermal applications.,Tungsten Carbide / Carbon,-40 to 220°C,API 682 Plan 11,In stock
+SEAL-GSK-080,Spiral Wound Gasket with Inner & Outer Ring DN80,18.20,Seals & Fasteners,pack,High-integrity flange sealing gasket with graphite filler.,316L / Graphite,Class 300,ASME B16.20,In stock
+INST-TRN-010,Smart Differential Pressure Transmitter 4-20mA,425.00,Instrumentation & Safety,piece,HART protocol transmitter with local LCD display and push-button zero.,Hastelloy C-276,400 bar max overpressure,ATEX / IECEx Zone 0,In stock
+INST-FLW-050,Electromagnetic Flow Meter DN50 Flanged,780.00,Instrumentation & Safety,set,High-accuracy flowmeter for conductive liquids with remote transmitter.,PTFE Lining / 316L,±0.3% accuracy,OIML R49 / CE,2 weeks

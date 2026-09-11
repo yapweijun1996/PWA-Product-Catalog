@@ -198,3 +198,35 @@ test('interacts with search clear, persistent bottom quote bar, and quantity ste
   await decreaseBtn.click();
   await expect(page.locator('input[name^="quantity-"]')).toHaveValue('1');
 });
+
+test('renders product avatars, supports customer suggestion pills, and imports a representative supplier-shaped catalog', async ({ page }) => {
+  // Part B: Product avatar verification
+  await page.getByRole('button', { name: 'Load demo catalog' }).click();
+  const firstAvatar = page.locator('.product-avatar').first();
+  await expect(firstAvatar).toBeVisible();
+  await page.getByRole('button', { name: 'View' }).first().click();
+  await expect(page.locator('.product-avatar-large')).toBeVisible();
+  await page.getByRole('button', { name: 'Close' }).click();
+
+  // Part C: Customer history pills
+  await page.getByRole('button', { name: 'Add to quote' }).first().click();
+  await page.getByRole('button', { name: /Quotes/ }).click();
+  await page.locator('input[name="customer"]').fill('Apex Precision');
+  // Duplicate quote to create a second quote in history
+  await page.getByRole('button', { name: 'Duplicate' }).first().click();
+  // Check customer suggestion pill appears
+  const pill = page.locator('.customer-pill', { hasText: 'Apex Precision' });
+  await expect(pill).toBeVisible();
+  await page.locator('input[name="customer"]').fill('');
+  await pill.click();
+  await expect(page.locator('input[name="customer"]')).toHaveValue('Apex Precision');
+
+  // Part D: Representative synthetic B2B supplier-shaped catalog import
+  await page.goto('./#settings');
+  await page.locator('input[name="catalog-file"]').setInputFiles('tests/fixtures/realistic-supplier-catalog.csv');
+  await expect(page.getByText('15 valid products')).toBeVisible();
+  await page.getByRole('button', { name: 'Commit catalog' }).click();
+  await page.getByRole('navigation').getByRole('button', { name: /Catalog/ }).click();
+  await expect(page.locator('.screen-heading').getByText(/15 products/)).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Heavy-Duty Centrifugal Slurry Pump 15kW' })).toBeVisible();
+});
