@@ -2,7 +2,7 @@
 
 **Status:** Technical MVP foundation implemented; acceptance incomplete
 **Last verified:** 2026-09-11
-**Current implementation:** Vite/React/TypeScript source, Dexie persistence, CSV/JSON import, quote pricing/snapshots, backup/restore, five-locale settings, PDF export/share fallback, manifest/icons, owned Service Worker, browser tests, and Pages workflow exist in the working tree. Real supplier validation, production deployment, and several release proofs remain open.
+**Current implementation:** Commit `42c1a76` contains the Vite/React/TypeScript source, Dexie persistence, CSV/JSON import, quote pricing/snapshots, backup/restore, five-locale settings, PDF export/share fallback, manifest/icons, owned Service Worker, browser tests, and Pages workflow. Real supplier validation, production deployment, and several release proofs remain open.
 **Control documents:** `GOAL.md` defines completion; `PROGRESS.md` records evidence-backed status; `TASK.md` records executable work.
 
 ## 1. Scope
@@ -162,7 +162,7 @@ These are product or verification inputs, not assumptions to hide in implementat
 
 ## 7. Requirement status at the current baseline
 
-Status is split between implemented code, local verification, and release gaps. Local evidence below was run on 2026-09-11 against the working tree; it is not a production deployment claim.
+Status is split between implemented code, local verification, and release gaps. Local evidence below was run on 2026-09-11 against commit `42c1a76`; it is not a production deployment claim.
 
 | Area | Current status | Evidence and remaining gap |
 |---|---|---|

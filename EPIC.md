@@ -2,7 +2,7 @@
 
 **Status:** Implementation baseline exists; release verification pending
 **Last verified:** 2026-09-11
-**Current release:** No release. Commit `91b91c7` is the documentation baseline; the implementation is currently uncommitted in the working tree.
+**Current release:** No release. Commit `42c1a76` contains the implementation locally; it has not yet been pushed or deployed.
 
 Statuses use `Done`, `In progress`, `Ready`, `Not started`, and `Blocked`. `Done` means repository evidence exists, not that a requirement is merely described.
 

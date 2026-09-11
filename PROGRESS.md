@@ -2,7 +2,7 @@
 
 **Status:** Technical MVP baseline implemented; release verification pending
 **Last verified:** 2026-09-11
-**Checked-out commit:** `91b91c7` (`Initial commit`) plus an uncommitted implementation working tree.
+**Checked-out commit:** `42c1a76` (`feat: deliver offline catalog and quote PWA`), ahead of `origin/main` by one commit.
 
 ## Verified state
 
@@ -37,9 +37,9 @@ The core local workflow is implemented and tested with synthetic fixtures. Relea
 
 1. Missing real supplier data and acceptance quote.
 2. Unconfirmed pricing, tax, currency, quantity, branding, and legal rules.
-3. Implementation is currently uncommitted; no GitHub Actions run or verified Pages URL exists.
+3. Implementation is committed locally but not pushed; no GitHub Actions run or verified Pages URL exists.
 4. Waiting-worker update/data-survival simulation and representative final PDF inspection remain incomplete.
 
 ## Next action
 
-Obtain a redacted supplier fixture and representative quote template, commit the implementation baseline, then run the Pages workflow and verify the deployed HTTPS subpath. Update this file and `TASK.md` after each verified change.
+Run the Pages workflow after publishing the committed implementation, then verify the deployed HTTPS subpath. In parallel, obtain a redacted supplier fixture and representative quote template. Update this file and `TASK.md` after each verified change.

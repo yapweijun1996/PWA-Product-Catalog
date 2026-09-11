@@ -2,7 +2,7 @@
 
 **Status:** Technical foundation implemented; product validation pending
 **Last verified:** 2026-09-11
-**Codebase source of truth:** The working tree now contains the Vite/React/TypeScript implementation and tests. The last committed baseline `91b91c7` remains documentation-only until the implementation is committed.
+**Codebase source of truth:** Commit `42c1a76` contains the Vite/React/TypeScript implementation and tests. It is committed locally but has not yet been pushed or deployed.
 **Documentation control:** [GOAL.md](GOAL.md), [PROGRESS.md](PROGRESS.md), and [GOAL_PROMPT.md](GOAL_PROMPT.md).
 
 ## 1. Product intent

@@ -3,7 +3,7 @@
 **Status:** Technical baseline implemented; release roadmap active
 **Last verified:** 2026-09-11
 **Current phase:** Phase 0 business validation; technical foundation through Phase 4 locally implemented
-**Implementation status:** Technical baseline exists in the working tree. Local typecheck, unit/browser checks, build, manifest/SW checks, and Lighthouse accessibility checks pass; production deployment and real-input validation remain open.
+**Implementation status:** Technical baseline is committed locally in `42c1a76`. Local typecheck, unit/browser checks, build, manifest/SW checks, and Lighthouse accessibility checks pass; production deployment and real-input validation remain open.
 **Control documents:** `GOAL.md` (completion contract), `PROGRESS.md` (verified state), and `TASK.md` (executable ledger).
 
 This roadmap is an evidence-gated sequence, not a promise of dates. A phase advances only when its exit evidence exists in the repository or from an explicitly recorded browser/deployment verification.
@@ -120,7 +120,7 @@ These require a backend, authentication, data ownership, conflict resolution, an
 
 1. No real supplier data or quote template is available.
 2. Pricing, tax, currency, and legal requirements are not confirmed.
-3. The implementation is not yet committed or deployed; no GitHub Actions run or verified Pages URL exists.
+3. The implementation is committed locally but not yet pushed or deployed; no GitHub Actions run or verified Pages URL exists.
 4. Waiting-worker update/data-survival simulation and final PDF acceptance evidence are not yet validated.
 5. Client-side PDF font size and large catalog/image performance need real fixtures.
 6. Offline is local device scope, not shared-team synchronization.

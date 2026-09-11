@@ -2,7 +2,7 @@
 
 **Status:** Technical MVP baseline implemented; release verification pending
 **Last verified:** 2026-09-11
-**Repository baseline:** `91b91c7` is the documentation-only commit. The current implementation is uncommitted in the working tree.
+**Repository baseline:** `42c1a76` contains the committed local implementation and is one commit ahead of `origin/main`; it is not yet deployed.
 
 Statuses: `Done`, `Implemented`, `In progress`, `Ready`, `Not started`, `Blocked`, `Deferred`.
 `Done` means the stated evidence exists; it does not mean production release readiness.
@@ -11,7 +11,7 @@ Statuses: `Done`, `Implemented`, `In progress`, `Ready`, `Not started`, `Blocked
 
 | ID | Task | Evidence |
 |---|---|---|
-| PWA-000 | Initialize repository | `git status` and `git log` confirm the `main` baseline at `91b91c7`. |
+| PWA-000 | Initialize repository | `git status`, `git log`, and `git branch -vv` confirm `main` at `42c1a76`, ahead of `origin/main` by one commit; the original `91b91c7` baseline was documentation-only. |
 | PWA-001 | Record proposed product and UX direction | Project KB item `c8463d7b-582f-466d-abaa-416be7fe9700`, status `Proposed`. |
 | PWA-002 | Inspect repository source of truth before planning | Baseline contained only `.gitattributes`. |
 | PWA-003 | Create aligned documentation baseline | `DESIGN.md`, `SPEC.md`, `EPIC.md`, `ROADMAP.md`, and this ledger were aligned. |
@@ -47,7 +47,7 @@ Statuses: `Done`, `Implemented`, `In progress`, `Ready`, `Not started`, `Blocked
 | PWA-010 | Obtain real supplier fixture and quote template | Provide a redacted representative CSV/JSON/XLSX, expected fields, a quote sample, and legal wording. |
 | PWA-011 | Confirm MVP product decisions | Confirm currency, tax, discount, quantity precision, image policy, language, terms, and XLSX priority. |
 | PWA-061B | Final PDF acceptance | Provide final branding assets, quote layout, legal terms, and a representative acceptance quote. |
-| PWA-081 | Verify deployed Pages artifact | Commit/publish the implementation, run Actions, then verify the actual HTTPS Pages URL in a clean browser. |
+| PWA-081 | Verify deployed Pages artifact | The implementation is committed as `42c1a76`; push it, run Actions, then verify the actual HTTPS Pages URL in a clean browser. |
 
 ## Deferred
 
@@ -68,7 +68,7 @@ Statuses: `Done`, `Implemented`, `In progress`, `Ready`, `Not started`, `Blocked
 
 ## Current next action
 
-Obtain the redacted supplier fixture and quotation acceptance sample, then commit the technical baseline and run the Pages workflow. Do not claim release completion until production HTTPS, update-flow, final PDF, and real-input evidence are recorded.
+Push `42c1a76`, run the Pages workflow, and verify the deployed HTTPS subpath. Obtain the redacted supplier fixture and quotation acceptance sample in parallel. Do not claim release completion until production HTTPS, update-flow, final PDF, and real-input evidence are recorded.
 
 ## Documentation maintenance rule
 

@@ -3,7 +3,7 @@
 **Status:** Active implementation; release verification blocked
 **Last verified:** 2026-09-11
 **Owner:** Project maintainer
-**Source of truth:** The repository implementation and its verification evidence. Commit `91b91c7` is documentation-only; the current working tree contains the technical MVP baseline and its tests, but it is not yet committed or deployed.
+**Source of truth:** The repository implementation and its verification evidence. Commit `42c1a76` contains the technical MVP baseline and its tests; it is committed locally but not yet deployed.
 
 ## Current evidence
 
