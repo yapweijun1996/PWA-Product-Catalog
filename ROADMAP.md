@@ -1,16 +1,16 @@
 # PWA-Product-Catalog Roadmap
 
-**Status:** Planning
+**Status:** Technical baseline implemented; release roadmap active
 **Last verified:** 2026-09-11
-**Current phase:** Phase 0 — validation and foundation
-**Implementation status:** Not started; commit `91b91c7` has no application source, dependencies, tests, PWA assets, or deployment workflow. The current working tree contains documentation only.
+**Current phase:** Phase 0 business validation; technical foundation through Phase 4 locally implemented
+**Implementation status:** Technical baseline exists in the working tree. Local typecheck, unit/browser checks, build, manifest/SW checks, and Lighthouse accessibility checks pass; production deployment and real-input validation remain open.
 **Control documents:** `GOAL.md` (completion contract), `PROGRESS.md` (verified state), and `TASK.md` (executable ledger).
 
 This roadmap is an evidence-gated sequence, not a promise of dates. A phase advances only when its exit evidence exists in the repository or from an explicitly recorded browser/deployment verification.
 
 ## Phase 0 — Validate the real workflow
 
-**Status:** Blocked for implementation; documentation baseline complete
+**Status:** Blocked for release validation; documentation baseline and technical slice complete
 
 Inputs required:
 
@@ -25,7 +25,7 @@ Exit gate: a written acceptance fixture and confirmed MVP scope.
 
 ## Phase 1 — Catalog foundation
 
-**Status:** Not started
+**Status:** Implemented; locally verified
 
 Build:
 
@@ -41,7 +41,7 @@ Exit gate: valid and invalid fixtures, reload persistence, and offline catalog b
 
 ## Phase 2 — Quotation workflow
 
-**Status:** Not started
+**Status:** Implemented; locally verified
 
 Build:
 
@@ -55,7 +55,7 @@ Exit gate: totals and snapshot invariants pass unit, integration, and browser te
 
 ## Phase 3 — Customer-ready output
 
-**Status:** Not started
+**Status:** Implemented; PDF inspection and real acceptance sample pending
 
 Build:
 
@@ -69,7 +69,7 @@ Exit gate: inspected PDFs pass totals, wrapping, branding, CJK, and failure-reco
 
 ## Phase 4 — PWA runtime and delivery
 
-**Status:** Not started
+**Status:** Implemented locally; Pages/update verification pending
 
 Build:
 
@@ -120,7 +120,7 @@ These require a backend, authentication, data ownership, conflict resolution, an
 
 1. No real supplier data or quote template is available.
 2. Pricing, tax, currency, and legal requirements are not confirmed.
-3. The repository has no implementation baseline to verify against.
-4. GitHub Pages URL, build ownership, and CI policy are not yet validated.
+3. The implementation is not yet committed or deployed; no GitHub Actions run or verified Pages URL exists.
+4. Waiting-worker update/data-survival simulation and final PDF acceptance evidence are not yet validated.
 5. Client-side PDF font size and large catalog/image performance need real fixtures.
 6. Offline is local device scope, not shared-team synchronization.

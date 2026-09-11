@@ -1,10 +1,23 @@
 # PWA-Product-Catalog
 
-A planned mobile-first, offline-first B2B product catalog and quotation PWA for supplier sales representatives.
+A mobile-first, offline-first B2B product catalog and quotation PWA for supplier sales representatives.
 
 ## Current status
 
-**Planning only.** The current repository baseline has no application source, package manifest, tests, PWA assets, Service Worker, or GitHub Pages workflow. The design and requirements are intentionally labelled proposed until implementation and verification evidence exists.
+**Technical MVP foundation implemented; release verification pending.** The app now provides local catalog import, IndexedDB persistence, quote snapshots, branded PDF generation, English/Mandarin/Malay/Vietnamese/Japanese UI, PWA runtime behavior, and Pages CI configuration. It is not release-ready until real supplier/business inputs, PDF inspection, and an actual GitHub Pages deployment are verified.
+
+## Development
+
+```bash
+npm ci
+npm run typecheck
+npm test
+npm run test:e2e
+npm run build
+npm run preview
+```
+
+The Vite base path is `/PWA-Product-Catalog/`. Durable catalog, quote, settings, and logo data stays in IndexedDB; the Service Worker only handles same-origin `GET` requests. The PDF generator is loaded on demand to keep the initial mobile bundle smaller.
 
 ## Documentation
 

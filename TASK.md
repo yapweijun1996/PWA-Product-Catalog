@@ -1,74 +1,75 @@
 # PWA-Product-Catalog Task Ledger
 
-**Status:** Planning
+**Status:** Technical MVP baseline implemented; release verification pending
 **Last verified:** 2026-09-11
-**Repository baseline:** `main` at `91b91c7`; clean before documentation work; only `.gitattributes` existed. The current working tree contains documentation only and no implementation.
+**Repository baseline:** `91b91c7` is the documentation-only commit. The current implementation is uncommitted in the working tree.
 
-Statuses: `Done`, `Ready`, `In progress`, `Not started`, `Blocked`.
+Statuses: `Done`, `Implemented`, `In progress`, `Ready`, `Not started`, `Blocked`, `Deferred`.
+`Done` means the stated evidence exists; it does not mean production release readiness.
 
 ## Completed
 
 | ID | Task | Evidence |
 |---|---|---|
-| PWA-000 | Initialize repository | `git status` showed `main...origin/main`; `91b91c7` is the initial commit. |
-| PWA-001 | Record proposed product and UX direction | KB item `c8463d7b-582f-466d-abaa-416be7fe9700`, status `Proposed`. |
-| PWA-002 | Inspect repository source of truth before planning | No `package.json`, source, tests, manifest, Service Worker, workflow, or build output was present. |
-| PWA-003 | Create aligned documentation baseline | `DESIGN.md`, `SPEC.md`, `EPIC.md`, `ROADMAP.md`, and `TASK.md` were created together and label planned behavior as unimplemented. |
-| PWA-004 | Add durable goal, progress, and assignment prompt | `GOAL.md`, `PROGRESS.md`, and `GOAL_PROMPT.md` now define the completion contract, evidence-backed status, blockers, iteration policy, and compact assignment prompt. |
+| PWA-000 | Initialize repository | `git status` and `git log` confirm the `main` baseline at `91b91c7`. |
+| PWA-001 | Record proposed product and UX direction | Project KB item `c8463d7b-582f-466d-abaa-416be7fe9700`, status `Proposed`. |
+| PWA-002 | Inspect repository source of truth before planning | Baseline contained only `.gitattributes`. |
+| PWA-003 | Create aligned documentation baseline | `DESIGN.md`, `SPEC.md`, `EPIC.md`, `ROADMAP.md`, and this ledger were aligned. |
+| PWA-004 | Add durable goal, progress, and assignment prompt | `GOAL.md`, `PROGRESS.md`, and `GOAL_PROMPT.md` define completion, evidence, blockers, and iteration rules. |
+| PWA-020 | Scaffold Vite + TypeScript + test harness | `package.json`, `package-lock.json`, TypeScript/Vite/Vitest/Playwright config; `npm run typecheck`, `npm test`, and `npm run build` pass. The UI locale layer supports English (default), Mandarin Simplified Chinese, Malay, Vietnamese, and Japanese. |
+| PWA-021 | Establish Pages base path and static routing | Local preview returns the shell at `/PWA-Product-Catalog/`; browser tests pass under the same project path. |
+| PWA-031 | Implement CSV/JSON mapping and validation | `src/importer.ts`, synthetic fixtures, 3 importer unit tests, and a browser CSV flow cover mapping, errors, duplicates, and valid rows. |
+| PWA-032 | Commit imports atomically as catalog versions | `src/db.ts` transaction and atomic replacement regression test pass. |
+| PWA-033 | Implement JSON backup and restore | `src/backup.ts` plus IndexedDB tests cover valid restore and malformed format rejection. |
+| PWA-040 | Implement search, filters, cards, and product detail | Catalog UI, product-detail dialog, empty/no-result states, mobile screenshot, browser flow, and Lighthouse accessibility score 100. |
+| PWA-050 | Implement money, quantity, tax, and discount rules | `src/domain.ts` and pricing/validation tests cover minor units, percentage bounds, quantity precision, tax, and discount. |
+| PWA-051 | Implement quote cart and persistence | Add/edit/remove/quote persistence code plus browser quote flow and IndexedDB tests. |
+| PWA-052 | Implement immutable quote-line snapshots | Snapshot persistence test proves later catalog price edits do not change the saved line price. |
+| PWA-060 | Implement company branding settings | Local settings form persists company, contact, currency, tax, language, and bounded logo data URL. |
+| PWA-061 | Implement client-side PDF generation | `src/pdf.tsx`, dynamic PDF chunk, bundled Noto Sans SC WOFF, valid-PDF browser test, multi-page test, and manual rendered CJK check. |
+| PWA-070 | Add manifest and reviewed icons | `public/favicon.svg` is the canonical icon; UI glyphs use inline SVG, manifest includes the SVG plus PNG compatibility sizes, and the install prompt was observed in Chromium. |
+| PWA-071 | Implement owned versioned Service Worker | `public/sw.js`, GET/same-origin contract test, cache cleanup, offline fallback, and warmed offline browser reload. |
+| PWA-080 | Add GitHub Actions Pages workflow | `.github/workflows/deploy-pages.yml` uses lockfile install, type/unit/browser/build gates, artifact upload, and Pages deployment. |
 
-## Ready
+## In progress / partial proof
 
-| ID | Task | Depends on | Acceptance evidence |
+| ID | Task | Current evidence | Missing proof |
 |---|---|---|---|
-| PWA-010 | Obtain real supplier fixture and quote template | User/business input | Versioned redacted fixture, required fields, pricing rules, and quote acceptance sample. |
-| PWA-011 | Confirm MVP product decisions | PWA-010 | Confirmed currency, tax, discount, quantity, image, legal, language, and XLSX decisions. |
-| PWA-020 | Scaffold Vite + TypeScript + test harness | PWA-010 | Lockfile, build, type check, unit runner, and browser runner pass. |
-| PWA-021 | Establish Pages base path and static routing | PWA-020 | App loads and refreshes under `/PWA-Product-Catalog/` locally and in preview. |
+| PWA-030 | Implement versioned Dexie/IndexedDB schema | `src/db.ts` has schema version 1 and durable tables; persistence tests pass. | Future migration path and migration-specific tests. |
+| PWA-062 | Implement share and fallback actions | `shareQuotePdf()` uses Web Share when file sharing is supported and otherwise downloads; explicit UI actions exist. | Browser coverage for supported share, unsupported fallback, and cancellation. |
+| PWA-072 | Implement waiting-worker Update Now/Later flow | Waiting worker is not skipped automatically; the prompt reads the waiting Service Worker semantic version and shows it with Now/Later actions; controller reload is guarded. | Simulated waiting-worker browser test and data-survival check. |
+| PWA-073 | Verify IndexedDB data survives SW updates | IndexedDB ownership is separate from cache cleanup by design. | A real simulated worker update with catalog, quote, settings, and logo read-back. |
 
-## Not started — data and catalog
+## Blocked by product or release inputs
 
-| ID | Task | Depends on | Acceptance evidence |
-|---|---|---|---|
-| PWA-030 | Implement versioned Dexie/IndexedDB schema | PWA-020 | Migration tests preserve data and do not use localStorage for catalog/quotes. |
-| PWA-031 | Implement CSV/JSON mapping and validation | PWA-030, PWA-010 | Valid, invalid, duplicate, and empty fixtures produce expected results. |
-| PWA-032 | Commit imports atomically as catalog versions | PWA-031 | Failure leaves the previous active catalog unchanged. |
-| PWA-033 | Implement JSON backup and restore | PWA-030 | Malformed/incompatible backups are rejected without destructive replacement. |
-| PWA-040 | Implement search, filters, cards, and product detail | PWA-030 | Mobile and desktop browser checks pass including empty/no-result/long-text states. |
-
-## Not started — quote and output
-
-| ID | Task | Depends on | Acceptance evidence |
-|---|---|---|---|
-| PWA-050 | Implement money, quantity, tax, and discount domain rules | PWA-011 | Unit tests cover rounding, zero, decimal quantity, boundaries, and invalid input. |
-| PWA-051 | Implement quote cart and persistence | PWA-030, PWA-050 | Add/edit/remove/reopen flows persist offline. |
-| PWA-052 | Implement immutable quote-line snapshots | PWA-051 | Changing catalog price/name does not change saved quote output. |
-| PWA-060 | Implement company branding settings | PWA-030, PWA-010 | Settings and bounded local logo assets survive reload and backup/restore. |
-| PWA-061 | Implement branded client-side PDF | PWA-052, PWA-060 | PDF inspection proves totals, wrapping, page breaks, branding, and CJK. |
-| PWA-062 | Implement share and fallback actions | PWA-061 | Web Share, unsupported, cancellation, and download/copy paths are tested. |
-
-## Not started — PWA runtime and delivery
-
-| ID | Task | Depends on | Acceptance evidence |
-|---|---|---|---|
-| PWA-070 | Add manifest and reviewed icons | PWA-020 | Manifest validation and installability checks pass. |
-| PWA-071 | Implement owned versioned Service Worker | PWA-020 | Same-origin GET-only, network-first shell, offline fallback, and cache cleanup tests pass. |
-| PWA-072 | Implement waiting-worker Update Now/Later flow | PWA-071 | No automatic skip waiting; explicit activation and controller reload pass. |
-| PWA-073 | Verify IndexedDB data survives SW updates | PWA-030, PWA-072 | Catalog, quotes, settings, and assets remain after simulated update. |
-| PWA-080 | Add GitHub Actions Pages workflow | PWA-020, PWA-071 | Lockfile build/test gates and intended artifact upload are reviewed. |
-| PWA-081 | Verify deployed Pages artifact | PWA-080 | HTTPS shell, manifest, worker, assets, subpath routes, and offline warm-up pass. |
-
-## Blocked
-
-| ID | Blocker | Unblock action |
+| ID | Task | Blocker / unblock action |
 |---|---|---|
-| PWA-010B | No real supplier catalog, pricing rules, logo, or quote sample | Provide a redacted representative dataset and expected quotation. |
-| PWA-011B | Business rules and legal wording are unspecified | Confirm tax, discounts, currency, quantity precision, validity, and terms. |
-| PWA-081B | No implementation or deployed URL exists to verify | Complete PWA-020 through PWA-080, then run deployment verification. |
+| PWA-010 | Obtain real supplier fixture and quote template | Provide a redacted representative CSV/JSON/XLSX, expected fields, a quote sample, and legal wording. |
+| PWA-011 | Confirm MVP product decisions | Confirm currency, tax, discount, quantity precision, image policy, language, terms, and XLSX priority. |
+| PWA-061B | Final PDF acceptance | Provide final branding assets, quote layout, legal terms, and a representative acceptance quote. |
+| PWA-081 | Verify deployed Pages artifact | Commit/publish the implementation, run Actions, then verify the actual HTTPS Pages URL in a clean browser. |
 
-## Next action
+## Deferred
 
-The highest-value next task is **PWA-010**: obtain a real supplier fixture and quote sample. Do not add framework dependencies or claim implementation completion before that input and the acceptance rules are confirmed. Keep `GOAL.md`, `PROGRESS.md`, and this ledger synchronized after every verified implementation slice.
+| ID | Task | Reason |
+|---|---|---|
+| PWA-034 | XLSX import adapter | Separate adapter after supplier workbook and MVP-priority decision. |
+| PWA-090 | Cloud sync, collaboration, payments, ERP, live stock, AI | Explicitly outside the local-only static MVP; requires separate product, security, and operations decisions. |
+
+## Verification record
+
+- `npm run typecheck`: passed.
+- `npm test`: passed, **13 tests** across domain, importer, IndexedDB, and PWA contract suites.
+- `npm run test:e2e`: passed, **7 browser tests** covering installable shell, five-locale selection with English default, first run/search/quote, CSV import, warmed offline reload, valid PDF output, and multi-page PDF output.
+- `npm run build`: passed; the PDF renderer is code-split, with a remaining large deferred PDF chunk warning.
+- Local production preview: shell, manifest, `sw.js`, project subpath, CJK PDF rendering, and mobile interaction inspected.
+- Lighthouse mobile on local preview: Accessibility **100**, Best Practices **100**, SEO **100**; no failing audits.
+- `npm audit --omit=dev`: **0 vulnerabilities**. Full audit reports two moderate dev-only Vitest-chain advisories; upgrading requires a breaking Vitest major and was not applied.
+
+## Current next action
+
+Obtain the redacted supplier fixture and quotation acceptance sample, then commit the technical baseline and run the Pages workflow. Do not claim release completion until production HTTPS, update-flow, final PDF, and real-input evidence are recorded.
 
 ## Documentation maintenance rule
 
-After each implementation slice, update the affected requirement/task status with exact evidence: files, tests, command results, browser/deployment result, remaining limitations, and rollback/recovery notes. Never convert `Proposed` or `Ready` into `Done` from prose alone.
+After each implementation slice, update the affected requirement/task status with exact files, commands, browser/PDF/deployment results, limitations, and rollback/recovery notes. Never convert `Proposed`, `Ready`, or `Implemented` into `Done` from prose alone.

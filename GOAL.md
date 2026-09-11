@@ -1,9 +1,13 @@
 # PWA-Product-Catalog Goal
 
-**Status:** Active planning; implementation blocked
+**Status:** Active implementation; release verification blocked
 **Last verified:** 2026-09-11
 **Owner:** Project maintainer
-**Source of truth:** The repository implementation and its verification evidence. At checked-out commit `91b91c7`, only `.gitattributes` existed; the current working tree contains documentation only.
+**Source of truth:** The repository implementation and its verification evidence. Commit `91b91c7` is documentation-only; the current working tree contains the technical MVP baseline and its tests, but it is not yet committed or deployed.
+
+## Current evidence
+
+The local technical slice is implemented. `npm run typecheck`, `npm test` (13 tests), `npm run test:e2e` (7 tests), and `npm run build` pass. Local production preview checks include the project subpath, manifest, Service Worker, warmed offline reload, mobile layout, Lighthouse accessibility 100, and a rendered English/Mandarin PDF. The UI supports English (default), Mandarin Simplified Chinese, Malay, Vietnamese, and Japanese; UI glyphs use SVG and the canonical favicon SVG supplies the app icon. This evidence does not replace real-input or deployed HTTPS verification.
 
 ## Outcome
 
@@ -17,7 +21,7 @@ Completion requires:
 - implemented source, lockfile, migrations, and deployment workflow;
 - unit tests for money, validation, duplicate policy, snapshots, and migrations;
 - browser tests for first run, import, search, quote, PDF, offline reload, and user-controlled updates;
-- PDF inspection for totals, multi-page wrapping, branding, and English/Simplified Chinese text;
+- PDF inspection for totals, multi-page wrapping, branding, and the five supported locale text paths;
 - HTTPS GitHub Pages verification for the shell, manifest, Service Worker, assets, and project subpath;
 - final documentation synchronized to the implementation, test evidence, blockers, and deferred scope.
 

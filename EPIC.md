@@ -1,14 +1,14 @@
 # PWA-Product-Catalog Epics
 
-**Status:** Planning
+**Status:** Implementation baseline exists; release verification pending
 **Last verified:** 2026-09-11
-**Current release:** No release; commit `91b91c7` contains only `.gitattributes`; the current working tree contains documentation only.
+**Current release:** No release. Commit `91b91c7` is the documentation baseline; the implementation is currently uncommitted in the working tree.
 
 Statuses use `Done`, `In progress`, `Ready`, `Not started`, and `Blocked`. `Done` means repository evidence exists, not that a requirement is merely described.
 
 ## Epic 0 — Product validation and foundation
 
-**Status:** Blocked for implementation completion; documentation control baseline is done.
+**Status:** Blocked for release completion; technical implementation can proceed with synthetic fixtures.
 
 Goal: convert the proposed direction into implementable, testable contracts using real supplier inputs.
 
@@ -20,7 +20,7 @@ Goal: convert the proposed direction into implementable, testable contracts usin
 
 ## Epic 1 — Static app foundation
 
-**Status:** Not started.
+**Status:** Implemented; locally verified.
 
 Goal: create the smallest typed Vite application and GitHub Pages-compatible build.
 
@@ -30,14 +30,14 @@ Deliverables:
 - TypeScript/Vite application entrypoint;
 - configured Pages base path;
 - CSS tokens and responsive shell;
-- i18n foundation for `en` and `zh-Hans`;
+- i18n foundation for `en` (default), `zh-Hans`, `ms`, `vi`, and `ja`;
 - unit and browser test harness.
 
 Exit evidence: clean install/build, type check, unit tests, and a locally served shell under the Pages subpath.
 
 ## Epic 2 — Catalog import and local persistence
 
-**Status:** Not started.
+**Status:** Implemented; locally verified with synthetic fixtures.
 
 Goal: safely import and query a local product catalog.
 
@@ -54,7 +54,7 @@ Exit evidence: malformed, duplicate, large, and valid fixtures pass import tests
 
 ## Epic 3 — Catalog browsing
 
-**Status:** Not started.
+**Status:** Implemented; locally verified.
 
 Goal: find products quickly on mobile and desktop.
 
@@ -70,7 +70,7 @@ Exit evidence: browser test finds a known product, opens details, and adds it to
 
 ## Epic 4 — Quote builder
 
-**Status:** Not started.
+**Status:** Implemented; locally verified.
 
 Goal: create reliable quote drafts from local products.
 
@@ -86,7 +86,7 @@ Exit evidence: pricing unit tests and browser tests prove deterministic totals a
 
 ## Epic 5 — Branded PDF and sharing
 
-**Status:** Not started.
+**Status:** Implemented; local PDF verification partial.
 
 Goal: produce a customer-ready quote without a server.
 
@@ -94,7 +94,7 @@ Deliverables:
 
 - company settings and logo asset;
 - independent PDF template;
-- bundled font strategy for English and Simplified Chinese;
+- bundled font strategy for the five supported locales;
 - multi-page layout;
 - Web Share plus download/copy fallback.
 
@@ -102,7 +102,7 @@ Exit evidence: generated PDFs are inspected for totals, wrapping, CJK, page brea
 
 ## Epic 6 — PWA runtime
 
-**Status:** Not started.
+**Status:** Implemented; local runtime verification partial.
 
 Goal: make the app installable and truthful offline.
 
@@ -119,7 +119,7 @@ Exit evidence: browser verification passes first load, offline reload, persisten
 
 ## Epic 7 — GitHub Pages delivery
 
-**Status:** Not started.
+**Status:** Workflow implemented; deployment not verified.
 
 Goal: deploy only a verified artifact to the repository Pages site.
 
@@ -135,7 +135,7 @@ Exit evidence: a successful Actions run and clean-browser HTTPS checks against t
 
 ## Epic 8 — Release readiness
 
-**Status:** Blocked until Epics 1–7 produce evidence.
+**Status:** Blocked until real-input, production deployment, update-flow, and final PDF evidence are complete.
 
 Goal: release a validated local-first MVP.
 

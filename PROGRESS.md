@@ -1,45 +1,45 @@
 # PWA-Product-Catalog Progress
 
-**Status:** Planning; no implementation release
+**Status:** Technical MVP baseline implemented; release verification pending
 **Last verified:** 2026-09-11
-**Checked-out commit:** `91b91c7` (`Initial commit`)
+**Checked-out commit:** `91b91c7` (`Initial commit`) plus an uncommitted implementation working tree.
 
 ## Verified state
 
 - Repository baseline inspected: `Done` — the commit contains only `.gitattributes`.
 - Product and UX direction recorded in KB-MCP: `Done` — project KB item `c8463d7b-582f-466d-abaa-416be7fe9700`, status `Proposed`.
 - Documentation control set created/aligned: `Done` — `README.md`, `DESIGN.md`, `SPEC.md`, `EPIC.md`, `ROADMAP.md`, `TASK.md`, `GOAL.md`, `PROGRESS.md`, and `GOAL_PROMPT.md`.
-- Application source, dependencies, tests, manifest, Service Worker, and Pages workflow: `0% / Not started`.
-- Release readiness: `0% / Not ready`.
+- Application source, dependencies, tests, manifest, Service Worker, and Pages workflow: `Implemented / locally verified`.
+- Release readiness: `Not ready` — business inputs, production deployment, explicit update simulation, and final PDF acceptance evidence remain open.
 
-The percentages above are evidence-backed status values, not estimates of effort. Documentation completion does not count as product implementation.
+These are evidence-backed status values, not estimates of effort. Documentation completion does not count as product implementation.
 
 ## Current phase
 
-**Phase 0 — validate the real supplier workflow and establish the foundation.**
+**Phase 0 business validation with technical foundation in place.**
 
-The project is blocked from implementation completion because no real supplier catalog, pricing rules, branding assets, quotation template, or legal wording has been provided. Technical implementation can begin with synthetic fixtures, but business behavior must remain provisional until real inputs are confirmed.
+The core local workflow is implemented and tested with synthetic fixtures. Release behavior remains provisional until a real supplier catalog, pricing rules, branding assets, quotation template, and legal wording are provided and verified.
 
 ## Workstream status
 
 | Workstream | Status | Evidence or next proof |
 |---|---|---|
-| Product scope and UX | Proposed | Validate with a real supplier. |
-| Repository foundation | Initialized | Add package/build/test foundation. |
-| Catalog import and IndexedDB | Not started | Implement schema, migration, validation, and atomic import tests. |
-| Catalog browsing | Not started | Verify mobile/desktop search and filter flow. |
-| Quote builder | Not started | Prove deterministic totals and immutable snapshots. |
-| PDF and sharing | Not started | Inspect branded multi-page and CJK output. |
-| PWA runtime | Not started | Verify manifest, offline shell, cache policy, and prompted updates. |
-| GitHub Pages delivery | Not started | Add CI and verify the deployed subpath. |
+| Product scope and UX | Proposed / technical slice implemented | Validate labels, fields, pricing, legal terms, and workflow with a real supplier. |
+| Repository foundation | Implemented | `package.json`, lockfile, Vite, TypeScript, Vitest, Playwright, and Pages workflow exist; local gates pass. English is default with Mandarin, Malay, Vietnamese, and Japanese locale coverage. |
+| Catalog import and IndexedDB | Implemented; locally verified | CSV/JSON mapping, row errors, duplicate rejection, atomic replacement, backup/restore, and snapshot tests pass. |
+| Catalog browsing | Implemented; locally verified | Search, category chips, provenance, product detail dialog, empty state, mobile screenshot, and Lighthouse accessibility pass. |
+| Quote builder | Implemented; locally verified | Deterministic money rules, quantity/discount validation, history, snapshots, duplicate/delete, and quote browser flow pass. |
+| PDF and sharing | Implemented; partially verified | Local PDF, CJK rendering, validity/tax/totals, fallback share, and multi-page browser checks exist; final branded acceptance sample and failure injection remain. |
+| PWA runtime | Implemented; partially verified | Manifest/icons, install prompt, versioned GET-only SW, waiting-version Update Now/Later prompt, warmed offline reload, and cache contract pass locally; HTTPS and waiting-worker simulation remain. |
+| GitHub Pages delivery | Workflow implemented; not deployed | CI gates and artifact upload are configured; no GitHub Actions run or deployed URL has been verified. |
 
 ## Blockers
 
 1. Missing real supplier data and acceptance quote.
-2. Unconfirmed pricing, tax, currency, quantity, and legal rules.
-3. No implementation baseline to test or deploy.
-4. No verified Pages URL or CI artifact policy.
+2. Unconfirmed pricing, tax, currency, quantity, branding, and legal rules.
+3. Implementation is currently uncommitted; no GitHub Actions run or verified Pages URL exists.
+4. Waiting-worker update/data-survival simulation and representative final PDF inspection remain incomplete.
 
 ## Next action
 
-Obtain a redacted supplier fixture and representative quote template, then scaffold the smallest testable application slice. Update this file and `TASK.md` after each verified change.
+Obtain a redacted supplier fixture and representative quote template, commit the implementation baseline, then run the Pages workflow and verify the deployed HTTPS subpath. Update this file and `TASK.md` after each verified change.

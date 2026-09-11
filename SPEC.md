@@ -1,8 +1,8 @@
 # PWA-Product-Catalog Specification
 
-**Status:** Planning / proposed
+**Status:** Technical MVP foundation implemented; acceptance incomplete
 **Last verified:** 2026-09-11
-**Current implementation:** None. The source repository at `91b91c7` contains only `.gitattributes`; the requirements below are not yet implemented. The current working tree contains documentation only.
+**Current implementation:** Vite/React/TypeScript source, Dexie persistence, CSV/JSON import, quote pricing/snapshots, backup/restore, five-locale settings, PDF export/share fallback, manifest/icons, owned Service Worker, browser tests, and Pages workflow exist in the working tree. Real supplier validation, production deployment, and several release proofs remain open.
 **Control documents:** `GOAL.md` defines completion; `PROGRESS.md` records evidence-backed status; `TASK.md` records executable work.
 
 ## 1. Scope
@@ -24,7 +24,7 @@ Build a static, installable, mobile-first PWA for supplier sales representatives
 - Service Worker shell caching;
 - install prompt and explicit update flow;
 - GitHub Pages deployment;
-- English and Simplified Chinese-ready UI.
+- English (default), Mandarin Simplified Chinese, Malay, Vietnamese, and Japanese UI.
 
 ### Deferred
 
@@ -67,7 +67,7 @@ Build a static, installable, mobile-first PWA for supplier sales representatives
 - **FR-PDF-01:** A user can generate a branded PDF without a network request.
 - **FR-PDF-02:** The PDF includes company identity, customer/recipient fields, quote number/date, line items, tax, discount, totals, notes, and validity terms.
 - **FR-PDF-03:** Long names and multi-page line items wrap without clipping or overlap.
-- **FR-PDF-04:** English and Simplified Chinese render correctly through an explicitly bundled font strategy.
+- **FR-PDF-04:** English, Mandarin Simplified Chinese, Malay, Vietnamese, and Japanese render correctly through an explicitly bundled font strategy.
 - **FR-PDF-05:** PDF generation failure preserves the draft quote and presents a usable fallback.
 
 ### FR-PWA: Install, offline, and updates
@@ -76,7 +76,7 @@ Build a static, installable, mobile-first PWA for supplier sales representatives
 - **FR-PWA-02:** The application shell loads after it has been visited once and the device is offline.
 - **FR-PWA-03:** Catalogs, quotes, settings, and required local assets survive reload and offline use.
 - **FR-PWA-04:** Service Worker caching is same-origin `GET` only and does not claim cross-origin APIs or non-GET requests.
-- **FR-PWA-05:** An updated worker waits for explicit user approval; it does not silently reload or discard local data.
+- **FR-PWA-05:** An updated worker waits for explicit user approval; the UI shows the waiting version number with Update Now and Later actions, and it does not silently reload or discard local data.
 - **FR-PWA-06:** Cache cleanup is versioned and does not delete IndexedDB data.
 - **FR-PWA-07:** Unsupported install/share capabilities have visible fallbacks.
 
@@ -89,7 +89,7 @@ Build a static, installable, mobile-first PWA for supplier sales representatives
 
 ## 3. Data contract
 
-All durable user data is planned for IndexedDB through a single persistence adapter.
+All durable user data is stored in IndexedDB through the `src/store.ts` application facade and `src/db.ts` adapter. The current technical slice stores the bounded logo as `logoDataUrl` in settings; separate `assets` and `app_metadata` tables from the target contract remain future schema work.
 
 ```text
 products
@@ -136,7 +136,7 @@ The final schema may change during implementation, but the following invariants 
 - **Accessibility:** keyboard operation, visible focus, semantic controls, labels, contrast, and screen-reader status messages.
 - **Privacy:** no embedded API keys or credentials; no remote analytics required for the local-only MVP.
 - **Recovery:** export, restore, migration failure handling, and clear-data confirmation.
-- **Internationalization:** all user-facing strings route through the translation layer; no feature-specific hardcoded English/Chinese strings.
+- **Internationalization:** all user-facing strings route through the translation layer; supported locales are `en` (default), `zh-Hans`, `ms`, `vi`, and `ja`.
 
 ## 5. Acceptance evidence
 
@@ -162,6 +162,18 @@ These are product or verification inputs, not assumptions to hide in implementat
 
 ## 7. Requirement status at the current baseline
 
-All requirements in this document are currently `Not started` and none are `Verified`, because no application source, dependency manifest, test suite, PWA artifact, or deployment workflow exists in the checked-out codebase. The documentation baseline is complete, but it is not acceptance evidence for FR-CAT, FR-QUOTE, FR-IMPORT, FR-PDF, FR-PWA, or FR-DEPLOY.
+Status is split between implemented code, local verification, and release gaps. Local evidence below was run on 2026-09-11 against the working tree; it is not a production deployment claim.
 
-When implementation begins, update requirement status only with exact file, command, browser, PDF, or deployment evidence. `GOAL.md` and `GOAL_PROMPT.md` require the same evidence boundary.
+| Area | Current status | Evidence and remaining gap |
+|---|---|---|
+| FR-CAT-01..08 | Implemented; locally verified | `src/importer.ts`, `src/db.ts`, catalog UI, `tests/importer.test.ts`, `tests/db.test.ts`, and the CSV browser flow cover CSV/JSON, mapping, row errors, duplicate rejection, atomic replacement, search/filter/detail, and catalog provenance. Real supplier shape and scale remain unverified. |
+| FR-QUOTE-01..06 | Implemented; locally verified | `src/domain.ts`, `src/db.ts`, quote UI, unit/IndexedDB tests, and browser quote flow cover pricing, quantity/line discount/quote discount, snapshots, history, reopen/duplicate/delete, and explicit output actions. Tax/legal business rules still need confirmation. |
+| FR-IMPORT-01..05 | Implemented; locally verified | `src/importer.ts`, `src/backup.ts`, and `tests/db.test.ts` cover isolated parsing, duplicate policy, backup/restore, and malformed-backup rejection. Schema validation is intentionally minimal until the real supplier contract is known. |
+| FR-IMPORT-06 | Not started / deferred | XLSX needs a separate adapter after the real supplier workbook decision. |
+| FR-PDF-01..02 | Implemented; locally verified | `src/pdf.tsx` and browser PDF checks prove local generation, company/customer/date/validity, lines, tax, discount, totals, notes, and bundled CJK font output. Final quotation/legal wording is still pending. |
+| FR-PDF-03..05 | Partially verified | Browser tests prove multi-page output and valid PDF bytes; a manual PDF render showed English/Mandarin and wrapping. Malay, Vietnamese, Japanese, failure-injection, final branding assets, and representative acceptance PDF remain open. |
+| FR-PWA-01..07 | Implemented; locally verified | Manifest contract, canonical SVG/PNG icon set, install prompt observation, Service Worker policy/version contract, and warmed offline reload pass locally. HTTPS, update approval with a real waiting worker, cache/data survival after update, and unsupported-device paths remain open. |
+| FR-DEPLOY-01..03 | Implemented; locally verified | `vite.config.ts`, `.github/workflows/deploy-pages.yml`, typecheck, 13 unit/integration tests, 7 browser tests, and build pass locally. The workflow has not run on GitHub. |
+| FR-DEPLOY-04 | Not verified | Requires the actual GitHub Pages HTTPS URL and clean-browser checks for manifest, worker, assets, and project-scoped routes. |
+
+When a release input or verification step completes, update this table only with exact file, command, browser, PDF, or deployment evidence. `GOAL.md` and `GOAL_PROMPT.md` require the same evidence boundary.
