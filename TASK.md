@@ -32,8 +32,8 @@ Statuses: `Done`, `Implemented`, `In progress`, `Ready`, `Not started`, `Blocked
 | PWA-072 | Implement waiting-worker Update Now/Later flow | Deployed browser verification loaded `0.1.0`, detected waiting version `0.1.1`, confirmed Later left the worker waiting, and confirmed Update Now activated the worker and reloaded without silently updating. |
 | PWA-073 | Verify IndexedDB data survives SW updates | After the deployed update, browser IndexedDB read-back found 6 products, 1 catalog version, 1 quote, 1 quote line, 1 settings record, preserved company/customer values, and a stored logo; cache cleanup left only `pwa-product-catalog-shell-2a7d766`. |
 | PWA-062 | Implement share and fallback actions | `tests/e2e/catalog.spec.ts` covers supported Web Share, unsupported download fallback, and cancelled sharing; all three paths pass locally. |
-| PWA-080 | Add GitHub Actions Pages workflow | `.github/workflows/deploy-pages.yml` uses lockfile install, type/unit/browser/build gates, artifact upload, and Pages deployment; GitHub Actions run 5 (`34595922906`) passed. |
-| PWA-081 | Verify deployed Pages artifact | GitHub Actions run 5 (`34595922906`) passed and fresh-browser checks verified https://yapweijun1996.github.io/PWA-Product-Catalog/ over HTTPS, including shell, manifest, Service Worker, canonical SVG/PNG icons, hashed assets, scoped registration, deployed version `0.1.1`, and warmed offline reload. |
+| PWA-080 | Add GitHub Actions Pages workflow | `.github/workflows/deploy-pages.yml` uses lockfile install, type/unit/browser/build gates, artifact upload, and Pages deployment; GitHub Actions run 7 (`34597073923`) passed. |
+| PWA-081 | Verify deployed Pages artifact | GitHub Actions run 7 (`34597073923`) passed and fresh-browser checks verified https://yapweijun1996.github.io/PWA-Product-Catalog/ over HTTPS, including shell, manifest, Service Worker, canonical SVG/PNG icons, hashed assets, scoped registration, deployed version `0.1.1`, and warmed offline reload. |
 
 ## In progress / partial proof
 
@@ -65,7 +65,7 @@ Statuses: `Done`, `Implemented`, `In progress`, `Ready`, `Not started`, `Blocked
 - Local production preview: shell, manifest, `sw.js`, project subpath, CJK PDF rendering, and mobile interaction inspected.
 - Lighthouse mobile on local preview: Accessibility **100**, Best Practices **100**, SEO **100**; no failing audits.
 - `npm audit --omit=dev`: **0 vulnerabilities**. Full audit reports two moderate dev-only Vitest-chain advisories; upgrading requires a breaking Vitest major and was not applied.
-- GitHub Actions run 3 (`34594397124`): **passed** — verify and deploy jobs succeeded for commit `9c19cdd`.
+- GitHub Actions run 7 (`34597073923`): **passed** — verify and deploy jobs succeeded for commit `c3418d2`.
 - Deployed HTTPS verification: **passed** — shell, manifest, Service Worker, icons, hashed assets, scoped registration, version `0.1.1`, and warmed offline reload were verified at https://yapweijun1996.github.io/PWA-Product-Catalog/; deployed Lighthouse mobile scores were Accessibility **100**, Best Practices **100**, SEO **100**, Agentic Browsing **100**.
 - Deployed update/data-survival verification: **passed** — a `0.1.0` client showed waiting `0.1.1`, Later preserved the prompt state, Update Now activated the new worker, and IndexedDB/catalog/quote/settings/logo data remained present after reload.
 
