@@ -3,7 +3,7 @@
 **Status:** Technical baseline implemented; release roadmap active
 **Last verified:** 2026-09-11
 **Current phase:** Phase 0 business validation; technical foundation through Phase 4 locally implemented
-**Implementation status:** The current technical baseline is committed in `d5930eb` and deployed at https://yapweijun1996.github.io/PWA-Product-Catalog/. Local and GitHub Actions typecheck, unit/browser checks, build, manifest/SW checks, Lighthouse mobile checks, deployed update/data-survival checks, and share fallback checks pass; real-input and final PDF validation remain open.
+**Implementation status:** The current technical baseline is committed in `d5930eb` and deployed at https://yapweijun1996.github.io/PWA-Product-Catalog/. Local and GitHub Actions run 10 (`34600730823`) typecheck, unit/browser checks, build, manifest/SW checks, Lighthouse mobile checks, deployed update/data-survival checks, and share fallback checks pass; run 11 (`34601321451`) redeployed synchronized documentation; real-input and final PDF validation remain open.
 **Control documents:** `GOAL.md` (completion contract), `PROGRESS.md` (verified state), and `TASK.md` (executable ledger).
 
 This roadmap is an evidence-gated sequence, not a promise of dates. A phase advances only when its exit evidence exists in the repository or from an explicitly recorded browser/deployment verification.
@@ -120,7 +120,7 @@ These require a backend, authentication, data ownership, conflict resolution, an
 
 1. No real supplier data or quote template is available.
 2. Pricing, tax, currency, and legal requirements are not confirmed.
-3. Final PDF acceptance evidence and unsupported-share coverage are not yet complete.
+3. Final PDF acceptance evidence, failure-injection, migration-specific, and unsupported-device checks are not yet complete.
 4. Real supplier inputs, final pricing/legal rules, and quotation acceptance remain unavailable.
 5. Client-side PDF font size and large catalog/image performance need real fixtures.
 6. Offline is local device scope, not shared-team synchronization.

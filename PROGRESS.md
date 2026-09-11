@@ -2,7 +2,7 @@
 
 **Status:** Technical MVP baseline implemented; release verification pending
 **Last verified:** 2026-09-11
-**Implementation commit:** `d5930eb` (`feat: validate supplier-shaped catalog workflow`), deployed through GitHub Actions run 8 (`34600730823`); release validation remains incomplete and the repository is synchronized with `origin/main`.
+**Implementation commit:** `d5930eb` (`feat: validate supplier-shaped catalog workflow`), passed and deployed through GitHub Actions run 10 (`34600730823`); the documentation sync commit was redeployed by run 11 (`34601321451`). Release validation remains incomplete and the repository is synchronized with `origin/main`.
 
 ## Verified state
 
@@ -31,7 +31,7 @@ The core local workflow is implemented and tested with synthetic fixtures. Relea
 | Quote builder | Implemented; locally verified | Deterministic money rules, quantity steppers (44px+ touch targets), quantity/discount validation, history, snapshots, duplicate/delete, and quote browser flow pass. |
 | PDF and sharing | Implemented; partially verified | Local PDF, CJK rendering, validity/tax/totals, supported Web Share, unsupported download fallback, cancellation handling, five-locale export paths, and multi-page browser checks exist; a deployed synthetic branded PDF was visually inspected; final acceptance sample and failure injection remain. |
 | PWA runtime | Implemented; deployed and partially verified | Manifest/icons, install prompt, versioned GET-only SW, deployed `0.1.0` → `0.1.1` waiting-version Later/Update Now flow, cache cleanup, IndexedDB read-back, and warmed offline reload pass; migration-specific and unsupported-device checks remain. |
-| GitHub Pages delivery | Deployed; locally and remotely verified | GitHub Actions run 8 (`34600730823`) passed for `d5930eb`; https://yapweijun1996.github.io/PWA-Product-Catalog/ returned the current hashed shell (`index-D3bksFho.js`), manifest, Service Worker version `d5930eb`, scoped HTTPS runtime, and cache `pwa-product-catalog-shell-d5930eb`. Fresh-browser mobile checks, offline reload, and the explicit `v0.1.1` update flow pass. |
+| GitHub Pages delivery | Deployed; locally and remotely verified | GitHub Actions run 10 (`34600730823`) passed for `d5930eb`, and run 11 (`34601321451`) redeployed the synchronized documentation commit; https://yapweijun1996.github.io/PWA-Product-Catalog/ returned the current hashed shell (`index-D3bksFho.js`), manifest, Service Worker version `d5930eb`, scoped HTTPS runtime, and cache `pwa-product-catalog-shell-d5930eb`. Fresh-browser mobile checks, offline reload, and the explicit `v0.1.1` update flow pass. |
 
 ## Blockers
 

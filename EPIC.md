@@ -131,7 +131,7 @@ Deliverables:
 - Pages artifact upload/deploy;
 - deployed shell/manifest/worker/asset verification.
 
-Exit evidence: GitHub Actions run 8 (`34600730823`) passed, and fresh-browser HTTPS checks verified https://yapweijun1996.github.io/PWA-Product-Catalog/.
+Exit evidence: GitHub Actions run 10 (`34600730823`) passed for the implementation and run 11 (`34601321451`) redeployed the synchronized artifact; fresh-browser HTTPS checks verified https://yapweijun1996.github.io/PWA-Product-Catalog/.
 
 ## Epic 8 — Release readiness
 
